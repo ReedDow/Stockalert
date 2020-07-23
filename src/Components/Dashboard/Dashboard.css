@@ -1,0 +1,75 @@
+.watchlist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100%;
+    background-color: #3C3F58;
+    color: #A0B0BF;
+    box-sizing: border-box;
+    padding-top: 20px;
+}
+
+.watchlist textarea {
+    height: 200px;
+    width: 300px;
+    background-color: #43455C;
+    color: #A0B0BF;
+    box-sizing: border-box;
+    border: none;
+    margin-top: 40px;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.watchlist button {
+    position: relative;
+    /* right: 180px; */
+
+    height: 30px;
+    width: 75px;
+    background-color: #3BBA9C;
+    color: #2E3047;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 2px;
+    font-size: 20px;
+}
+
+.watchlist button:hover {
+    background-color: white;
+    color: #444445;
+}
+
+.watchlist h1 {
+    margin: 0px;
+}
+
+.post-flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.post-box {
+    display: flex;
+    flex: 1 1 150 px;
+    background-color: #2E3047;
+    max-height: 40vh;
+    min-height: 40vh;
+    min-width: 25vh;
+    max-width: 25vh;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+
+.post-box button {
+    width: 50px;
+    font-size: 13px;
+}
+
+.stock-notes {
+    height: 250px;
+    margin: 20px;
+    border-radius: 10px;
+}
