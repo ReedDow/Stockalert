@@ -52,7 +52,7 @@ class Profile extends Component {
     render(){
         return (
             <div className='profile'>
-                <h1>Hey look, it's you!</h1>
+                <h1>Profile</h1>
                 <img 
                     className='profile-picture'
                     src={this.props.user.profile_picture}

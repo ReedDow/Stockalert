@@ -1,6 +1,6 @@
 .profile {
   height: calc(100vh - 100px);
-  background-color: #2E3047;
+  background-color: #3C3F58;
   color: white;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -51,4 +51,4 @@
 #edit-button {
   width: 100px;
 }
-/*# sourceMappingURL=main.css.map */
+/*# sourceMappingURL=profile.css.map */

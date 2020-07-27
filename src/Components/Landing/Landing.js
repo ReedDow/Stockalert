@@ -62,7 +62,7 @@ class Landing extends Component {
     render(){
         return(
             
-            <div className='landing-container'>
+            <form className='landing-container'>
                 <section className='authentication-info'>
                 <img 
                 src = {'https://www.freelogodesign.org/file/app/client/thumb/56cf6e02-8a69-4d55-87ae-0a4e94d66251_200x200.png?1595389851905'} 
@@ -105,7 +105,7 @@ class Landing extends Component {
                         <span onClick={this.handleToggle}>Register</span>
                        </>)}
                 </section>
-            </div>
+            </form>
         )
     }
 }

@@ -52,7 +52,7 @@
 
 .post-box {
     display: flex;
-    flex: 1 1 150 px;
+    flex: 1 1 150px;
     background-color: #2E3047;
     max-height: 40vh;
     min-height: 40vh;

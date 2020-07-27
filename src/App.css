@@ -1,3 +1,9 @@
+body{
+  background-color: #3C3F58;
+  color: #707793;
+}
+
 .App {
   text-align: center;
+  background-color: #3C3F58;
 }

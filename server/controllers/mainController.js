@@ -1,3 +1,5 @@
+const { default: MajorDevelopments } = require("finnhub/dist/model/MajorDevelopments");
+
 module.exports = {
     //When building handler functions, make sure to consider:
     //1. What information does this handler function need to work properly?
@@ -35,5 +37,14 @@ module.exports = {
         db.users.update_username(username, id)
         .then(user => res.status(200).send(user))
         .catch(err => console.log(err));
+    },
+
+    addSymboltoDB: async(req, res) => {
+        const {symbol} = req.body,
+              db = req.app.get('db');
+        const newStock = await db.stocks.add_db({symbol})
+        req.session.stock = newStock[0];
+        res.status(200).send(req.session.user);
     }
+      
 }

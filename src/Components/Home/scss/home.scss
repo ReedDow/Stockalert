@@ -2,8 +2,151 @@ $color1:#3C3F58;
 $color2:#2E3047;
 $color3:#707793;
 $color4:#3BBA9C;
+$color5:#A0B0BF;
 
-body{
+.home-body{
+    
+    display: flex;
+    flex-direction: column;
+    background-color: $color1;
+    color: $color3;
+    // justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.searchcontainer{
+    top: 10px;
+    display: flex;
+    position: fixed;
+    height: 90px;
+    width: 700px;
+    align-items: center;
+    justify-content: space-around;
     background-color: $color2;
-    color: $color;
+    position: relative;
+    box-shadow: 0px 1px 1px 0px #403D39;
+    border-radius: 2px;
+}
+
+.searchinput{
+    background-color: $color5;
+    color: black;
+    position: relative;
+    top: 100;
+    width: 450px;
+    height: 30px;
+    font-size: 18px;
+    border: none;
+}
+
+.srchbtn{
+    position: relative;
+    color: #403D39;
+    background-color: $color4;
+    border: none;
+    font-size: 18px;
+    height: 30px;
+
+}
+.resetbtn{
+    position: relative;
+    background-color: #707793;
+    color: #2E3047;
+    height: 30px;
+    width: 60px;
+    right: 10px;
+    font-size: 16px;
+    border: none;
+}
+
+.dashboard{
+    position: relative;
+    top: 40px;
+
+}
+
+.container {
+    
+    display: flex;
+    flex: 1 1 150px;
+    flex-direction: column;
+    margin: 10px;
+    font-size: 30px;
+    align-items: center;
+    justify-content: center;
+    width: 170px;
+    max-width: 170px;
+    height: 225px;
+    border-radius: 5px;
+    background-color: white;
+    background-repeat: no-repeat;
+    position: relative;
+    top: 100px;
+    overflow: hidden;
+    transition: transform 0.4s ease-out, box-shadow 0.4s;
+  }
+  
+  .container::after {
+    // content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    z-index: 20;
+    transition: all 0.2s;
+    font-weight: 500;
+    letter-spacing: 2px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  .container::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+    background-color: #3BBA9C;
+    transition: all 0.3s ease-out;
+    visibility: hidden;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .container:hover,
+  .container:focus {
+    box-shadow: 0 13px 33px -7px #3BBA9C;
+    transform: translateY(-5px);
+  }
+  
+  .container:hover::before,
+  .container:focus::before,
+  .container:hover::after,
+  .container:focus::after {
+    visibility: visible;
+    opacity: 0.4;
+  }
+  
+  .container:hover .Pricecontainer,
+  .container:hover .Bottom,
+  .container:focus .Pricecontainer,
+  .container:focus .Bottom {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .button {
+    display: none;
+}
+
+img:hover + .button, .button:hover {
+    display: inline-block;
 }
