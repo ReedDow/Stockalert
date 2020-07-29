@@ -11,6 +11,7 @@ create table if not exists users (
 create table if not exists note (
     note_id serial primary key,
     user_id int references users(user_id),
+    note_id references stock_symbol(stock_id),
     note_content text
 );
 

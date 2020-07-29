@@ -9,6 +9,7 @@ class Dashboard extends Component {
         super(props);
         this.state = {
             posts: [],
+            stocks: [],
             postContent: ''
         }
     }
@@ -18,10 +19,17 @@ class Dashboard extends Component {
             this.props.history.push('/');
         }
         this.getUserPosts();
+        this.getStocks();
     }
 
     handleInput = (val) => {
         this.setState({postContent: val})
+    }
+
+    getStocks = () => {
+        axios.get(`/api/symbols/${this.props.user.user_id}`)
+        .then(res => this.setState({stocks: res.data}))
+        .catch(err => console.log(err));
     }
 
     getUserPosts = () => {
@@ -48,20 +56,16 @@ class Dashboard extends Component {
     }
 
     render(){
-        console.log(this.props)
-        const mappedPosts = this.state.posts.map((post, i) => (
-            <div className='post-box'>
-                <p className='stock-notes'>
-                    {post.note_content}
-                    </p>
-                <button onClick={() => this.deletePost(post.note_id)}>Delete
-                </button>
+        console.log(this.props.data)
+        const mappedStocks = this.state.stocks.map((symbol, i) => (
+            <div className = 'symbol-box'>
+                <span className= 'symbol'>
+                    {symbol.symbol}
+                </span>
             </div>
         ))
-        return(
-            <div className='watchlist'>
-                
-                <h1>Watchlist</h1>
+        const mappedPosts = this.state.posts.map((post, i) => (
+            <div className='post-box'>
                 <textarea 
                     rows = '15'
                     cols = '20'
@@ -69,9 +73,24 @@ class Dashboard extends Component {
                     value={this.state.postContent}
                     placeholder='Write stock notes here'
                     onChange={(e) => this.handleInput(e.target.value)}/>
-                <button onClick={this.createPost}>save</button>
+                <button className = 'postbtn' onClick={this.createPost}>
+                Save</button>
+                <p className='stock-notes'>
+                    {post.note_content}
+                    </p>
+                <button className = 'deletebtn' onClick={() => this.deletePost(post.note_id)}>Delete
+                </button>
+            </div>
+        ))
+        return(
+            <div className='watchlist'>
+                
+                <h1>Watchlist</h1>
                 <div className='post-flex'>
+                    
+                    {mappedStocks} 
                     {mappedPosts}
+                    
                 </div>
                 
             </div>

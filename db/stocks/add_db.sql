@@ -1,5 +1,7 @@
-insert into stock (
+insert into stock_symbol (
+    user_id,
     symbol
 ) values (
-    ${symbol},
+    ${id},
+    ${symbol}
 )

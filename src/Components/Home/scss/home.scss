@@ -7,10 +7,11 @@ $color5:#A0B0BF;
 .home-body{
     
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     background-color: $color1;
     color: $color3;
-    // justify-content: center;
+    justify-content: center;
     align-items: center;
     padding-top: 20px;
 }
@@ -18,13 +19,13 @@ $color5:#A0B0BF;
 .searchcontainer{
     top: 10px;
     display: flex;
-    position: fixed;
     height: 90px;
     width: 700px;
     align-items: center;
     justify-content: space-around;
     background-color: $color2;
-    position: relative;
+    position: absolute;
+    top: 150px;
     box-shadow: 0px 1px 1px 0px #403D39;
     border-radius: 2px;
 }
@@ -66,7 +67,7 @@ $color5:#A0B0BF;
 
 }
 
-.container {
+.tooltip {
     
     display: flex;
     flex: 1 1 150px;
@@ -82,13 +83,13 @@ $color5:#A0B0BF;
     background-color: white;
     background-repeat: no-repeat;
     position: relative;
-    top: 100px;
+    top: 250px;
     overflow: hidden;
     transition: transform 0.4s ease-out, box-shadow 0.4s;
   }
   
-  .container::after {
-    // content: "";
+  .tooltip::after {
+    content: "";
     position: absolute;
     top: 50%;
     left: 50%;
@@ -103,7 +104,7 @@ $color5:#A0B0BF;
     visibility: hidden;
   }
   
-  .container::before {
+  .tooltip::before {
     content: "";
     position: absolute;
     width: 100%;
@@ -121,32 +122,44 @@ $color5:#A0B0BF;
     cursor: pointer;
   }
   
-  .container:hover,
-  .container:focus {
+  .tooltip:hover,
+  .tooltip:focus {
     box-shadow: 0 13px 33px -7px #3BBA9C;
     transform: translateY(-5px);
   }
   
-  .container:hover::before,
-  .container:focus::before,
-  .container:hover::after,
-  .container:focus::after {
+  .tooltip:hover::before,
+  .tooltip:focus::before,
+  .tooltip:hover::after,
+  .tooltip:focus::after {
     visibility: visible;
     opacity: 0.4;
   }
   
-  .container:hover .Pricecontainer,
-  .container:hover .Bottom,
-  .container:focus .Pricecontainer,
-  .container:focus .Bottom {
+  .tooltip:hover .Pricetooltip,
+  .tooltip:hover .Bottom,
+  .tooltip:focus .Pricetooltip,
+  .tooltip:focus .Bottom {
     opacity: 0;
     visibility: hidden;
   }
 
-  .button {
-    display: none;
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: $color4;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  position: relative;
+  
+  z-index: 1;
 }
 
-img:hover + .button, .button:hover {
-    display: inline-block;
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  position: relative;
+  transition:  0.1s;
+  
 }
+ 

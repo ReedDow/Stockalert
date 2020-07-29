@@ -53,21 +53,26 @@ class Profile extends Component {
         return (
             <div className='profile'>
                 <h1>Profile</h1>
-                <img 
-                    className='profile-picture'
-                    src={this.props.user.profile_picture}
-                    alt={this.props.user.username}/>
+                
                 {!this.state.editView
-                ? <h2>{this.props.user.username} <button id='edit-button' onClick={this.handleEditView}>Edit</button></h2>
+                ? <h2>Username: {this.props.user.username} <button 
+                    id='edit-button' 
+                    onClick={this.handleEditView}>Edit</button></h2>
                 : (<div>
                     <input 
                         value={this.state.username}
                         placeholder='New Username'
                         onChange={(e) => this.handleInput(e.target.value)}/>
-                    <button id='edit-button' onClick={this.updateUsername}>Submit</button>
+                    <button 
+                        id='edit-button' 
+                        onClick={this.updateUsername}>Submit</button>
                    </div>)}
-                <h2>{this.props.user.email}</h2>
-                <button onClick={this.handleLogout}>Logout</button>
+                <h2>Email: {this.props.user.email}</h2>
+                <button className = 'prembtn'>Become Premium Member</button>
+                <button 
+                    className = 'logout-button'
+                    onClick={this.handleLogout}
+                >Logout</button>
             </div>
         )
     }

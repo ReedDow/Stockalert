@@ -2,12 +2,17 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   background-color: #3C3F58;
   color: #707793;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -19,7 +24,6 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  position: fixed;
   height: 90px;
   width: 700px;
   -webkit-box-align: center;
@@ -28,7 +32,8 @@
   -ms-flex-pack: distribute;
       justify-content: space-around;
   background-color: #2E3047;
-  position: relative;
+  position: absolute;
+  top: 150px;
   -webkit-box-shadow: 0px 1px 1px 0px #403D39;
           box-shadow: 0px 1px 1px 0px #403D39;
   border-radius: 2px;
@@ -70,7 +75,7 @@
   top: 40px;
 }
 
-.container {
+.tooltip {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -96,7 +101,7 @@
   background-color: white;
   background-repeat: no-repeat;
   position: relative;
-  top: 100px;
+  top: 250px;
   overflow: hidden;
   -webkit-transition: -webkit-transform 0.4s ease-out, -webkit-box-shadow 0.4s;
   transition: -webkit-transform 0.4s ease-out, -webkit-box-shadow 0.4s;
@@ -104,7 +109,8 @@
   transition: transform 0.4s ease-out, box-shadow 0.4s, -webkit-transform 0.4s ease-out, -webkit-box-shadow 0.4s;
 }
 
-.container::after {
+.tooltip::after {
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -121,7 +127,7 @@
   visibility: hidden;
 }
 
-.container::before {
+.tooltip::before {
   content: "";
   position: absolute;
   width: 100%;
@@ -140,35 +146,45 @@
   cursor: pointer;
 }
 
-.container:hover,
-.container:focus {
+.tooltip:hover,
+.tooltip:focus {
   -webkit-box-shadow: 0 13px 33px -7px #3BBA9C;
           box-shadow: 0 13px 33px -7px #3BBA9C;
   -webkit-transform: translateY(-5px);
           transform: translateY(-5px);
 }
 
-.container:hover::before,
-.container:focus::before,
-.container:hover::after,
-.container:focus::after {
+.tooltip:hover::before,
+.tooltip:focus::before,
+.tooltip:hover::after,
+.tooltip:focus::after {
   visibility: visible;
   opacity: 0.4;
 }
 
-.container:hover .Pricecontainer,
-.container:hover .Bottom,
-.container:focus .Pricecontainer,
-.container:focus .Bottom {
+.tooltip:hover .Pricetooltip,
+.tooltip:hover .Bottom,
+.tooltip:focus .Pricetooltip,
+.tooltip:focus .Bottom {
   opacity: 0;
   visibility: hidden;
 }
 
-.button {
-  display: none;
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #3BBA9C;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  position: relative;
+  z-index: 1;
 }
 
-img:hover + .button, .button:hover {
-  display: inline-block;
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  position: relative;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
 }
 /*# sourceMappingURL=home.css.map */

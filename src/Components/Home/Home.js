@@ -12,8 +12,11 @@ class Home extends Component {
     constructor(props){
         super(props);
         this.state = {
-            quotes: [],
+            // high_prices: [],
+            // low_proces: [],
+            // current_prices: [],
             symbols: [],
+            descriptions: [],
             filteredSymbols: [],
             search: null,
 
@@ -21,8 +24,11 @@ class Home extends Component {
     }
 
   componentDidMount(){
-    this.getSymbols()
+      this.getDescriptions()
+      this.getSymbols()
+    
   }
+  
 
   handleSearch = (event) => {
     let keyword = event.target.value;
@@ -33,25 +39,35 @@ class Home extends Component {
     this.setState({search: null})
   };
 
+  handleClick = (symbol) => {
+    console.log(this.props)
+    axios.post('/api/symbol', {id: this.props.user.user_id, symbol})
+  
+        
+      .catch(err => console.log(err));
+  };
+
   getSymbols = () => {
     axios.get(finnhubClient.stockSymbols("US", (error, data, response) => {
-      this.state.symbols = data.map( elem => {
+
+      this.state.symbols =  data.map( elem => {
+        
           return elem.symbol 
       })
-      // console.log(this.state.symbols)
   }))
   };
 
-  getQuotes = () => {
-    axios.get('https://finnhub.io/api/v1/quote?symbol=AAPL&token=bsdhv07rh5retdgr9tdg', { json: true }, (err, res, body) => {
-  if (err) { return console.log(err); }
-  console.log(body.url);
-  console.log(body.explanation);
-})
-};
+  getDescriptions = () => {
+    axios.get(finnhubClient.stockSymbols("US", (error, data, response) => {
+      this.state.descriptions = data.map( elem => {
+          return elem.description 
+      })
+  }))
+  };
 
   render(){
-    console.log(this.state.symbols)
+    // console.log(Stocks)
+    // console.log(this.state.symbols)
     let filteredSymbols = this.state.symbols.filter((data) => {
       if(this.state.search == null)
         return false
@@ -59,17 +75,19 @@ class Home extends Component {
         return true
       }
       else return false
-    }).map(data => {
+    }).map((data) => {
       return(
         <div>
-          <container className = 'container'>{data}</container>
-          <button className = 'button'>Add to Watchlist</button>
+          <span 
+          onClick = {() => this.handleClick(data)}
+          className = 'tooltip'>
+            <div className = 'tooltiptext'>Add to Watchlist</div>{data}
+            </span>
+
         </div>
         
       )
-    
     })
-    
     
         return(
             <div className = 
@@ -89,14 +107,12 @@ class Home extends Component {
                 </section>
 
                 <section className = 'dashboard'>
-                <h6>Stocks</h6>
                 </section>
 
                 {filteredSymbols}
 
             </div>
         )
-        
     }
 }
 const mapStateToProps = reduxState => reduxState;

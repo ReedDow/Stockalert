@@ -11,33 +11,16 @@
 
 .watchlist textarea {
     height: 200px;
-    width: 300px;
-    background-color: #43455C;
+    width: 180px;
+    background-color: #A0B0BF;
     color: #A0B0BF;
     box-sizing: border-box;
     border: none;
     margin-top: 40px;
     font-size: 20px;
     margin-bottom: 20px;
-}
-
-.watchlist button {
     position: relative;
-    /* right: 180px; */
-
-    height: 30px;
-    width: 75px;
-    background-color: #3BBA9C;
-    color: #2E3047;
-    box-sizing: border-box;
-    border: none;
-    border-radius: 2px;
-    font-size: 20px;
-}
-
-.watchlist button:hover {
-    background-color: white;
-    color: #444445;
+    top: 150px;
 }
 
 .watchlist h1 {
@@ -45,13 +28,16 @@
 }
 
 .post-flex {
+
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
     justify-content: center;
 }
 
 .post-box {
     display: flex;
+
     flex: 1 1 150px;
     background-color: #2E3047;
     max-height: 40vh;
@@ -63,12 +49,58 @@
     margin: 10px;
 }
 
-.post-box button {
-    width: 50px;
-    font-size: 13px;
+.symbol-box{
+    display: flex;
+
+    flex: 1 1 150px;
+    background-color: black;
+    max-height: 55vh;
+    min-height: 55vh;
+    min-width: 30vh;
+    max-width: 30vh;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    font-size: 20px;
+
+}
+.postbtn{
+    position: relative;
+    top: 140px;
+    right: 50px;
+    height: 50px;
+    width: 54px;
+    background-color: #3BBA9C;
+    color: #2E3047;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 2px;
+    font-size: 18px;
+}
+
+.postbtn:hover {
+    background-color: white;
+    color: #444445;
+}
+
+.deletebtn{
+    
+    background-color: #3C3F58;
+    color: white;
+    position: relative;
+    bottom: 200px;
+    width: 54px;
+    bottom: 9px;
+    left: 50px;
+    height: 70px;
+    font-size: 15px;
+    border: none;
+    border-radius: 2px;
 }
 
 .stock-notes {
+    position: relative;
+    bottom: 100px;
     height: 250px;
     margin: 20px;
     border-radius: 10px;

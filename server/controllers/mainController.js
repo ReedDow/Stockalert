@@ -39,12 +39,22 @@ module.exports = {
         .catch(err => console.log(err));
     },
 
-    addSymboltoDB: async(req, res) => {
-        const {symbol} = req.body,
+    addSymboltoDB: (req, res) => {
+        console.log(req.body)
+        const {id, symbol} = req.body, 
               db = req.app.get('db');
-        const newStock = await db.stocks.add_db({symbol})
-        req.session.stock = newStock[0];
-        res.status(200).send(req.session.user);
+        
+        db.stocks.add_db({id, symbol})
+        .then(() => res.sendStatus(200))
+        .catch(err => res.status(500).send(err));
+    },
+
+    getSymbolfromDB: (req, res) => {
+        const {id} = req.params,
+              db = req.app.get('db');
+
+        db.stocks.get_symbol(id)
+        .then(symbols => res.status(200).send(symbols))
+        .catch(err => res.status(500).send(err));
     }
-      
 }

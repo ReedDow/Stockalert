@@ -1,2 +1,2 @@
 select distinct $1
-from stocks
+from stocks_symbol

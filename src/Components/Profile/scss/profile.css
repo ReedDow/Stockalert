@@ -1,7 +1,17 @@
 .profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   height: calc(100vh - 100px);
-  background-color: #3C3F58;
-  color: white;
+  background-color: #707793;
+  color: #2E3047;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding-top: 20px;
@@ -9,11 +19,7 @@
 
 .profile h1 {
   margin: 0px 0px 20px 0px;
-}
-
-.profile-picture {
-  height: 300px;
-  border-radius: 50%;
+  color: #2E3047;
 }
 
 .profile input {
@@ -23,19 +29,9 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   border: none;
-  border-bottom: 2px solid white;
+  border: 2px solid #3C3F58;
   font-size: 20px;
   color: white;
-}
-
-.profile button {
-  height: 30px;
-  width: 225px;
-  background-color: transparent;
-  color: white;
-  border: 2px solid white;
-  border-radius: 15px;
-  font-size: 20px;
 }
 
 .profile button:hover {
@@ -50,5 +46,34 @@
 
 #edit-button {
   width: 100px;
+  background-color: #3C3F58;
+  color: white;
+  font-size: 20px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: none;
+}
+
+.prembtn {
+  position: relative;
+  top: 20px;
+  background-color: #3BBA9C;
+  width: 250px;
+  height: 40px;
+  color: black;
+  font-size: 20px;
+  border: none;
+}
+
+.logout-button {
+  position: relative;
+  top: 100px;
+  background-color: #3C3F58;
+  color: white;
+  font-size: 20px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: none;
+  width: 80px;
 }
 /*# sourceMappingURL=profile.css.map */

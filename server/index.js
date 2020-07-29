@@ -55,8 +55,9 @@ app.delete('/api/post/:id', mainCtrl.deletePost);
 //user endpoints
 app.put('/api/user/:id', mainCtrl.updateUsername);
 
-//add symbol to db
+//stock endpoints
 app.post('/api/symbol', mainCtrl.addSymboltoDB)
+app.get('/api/symbols/:id', mainCtrl.getSymbolfromDB)
 
 
 
