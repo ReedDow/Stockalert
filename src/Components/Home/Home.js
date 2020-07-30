@@ -12,9 +12,6 @@ class Home extends Component {
     constructor(props){
         super(props);
         this.state = {
-            // high_prices: [],
-            // low_proces: [],
-            // current_prices: [],
             symbols: [],
             descriptions: [],
             filteredSymbols: [],
@@ -26,7 +23,6 @@ class Home extends Component {
   componentDidMount(){
       this.getDescriptions()
       this.getSymbols()
-    
   }
   
 
@@ -48,21 +44,19 @@ class Home extends Component {
   };
 
   getSymbols = () => {
-    axios.get(finnhubClient.stockSymbols("US", (error, data, response) => {
-
+    finnhubClient.stockSymbols("US", (error, data, response) => {
       this.state.symbols =  data.map( elem => {
-        
           return elem.symbol 
       })
-  }))
+  })
   };
 
   getDescriptions = () => {
-    axios.get(finnhubClient.stockSymbols("US", (error, data, response) => {
+    finnhubClient.stockSymbols("US", (error, data, response) => {
       this.state.descriptions = data.map( elem => {
           return elem.description 
       })
-  }))
+  })
   };
 
   render(){

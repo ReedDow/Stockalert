@@ -1,8 +1,12 @@
-//Dashboard is where users can view their posts, create new posts, and delete posts.
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import './Dashboard.css';
 import axios from 'axios';
+import moment from 'moment';
+const finnhub = require('finnhub');
+const api_key = finnhub.ApiClient.instance.authentications['api_key'];
+api_key.apiKey = "bsdhv07rh5retdgr9tdg"
+const finnhubClient = new finnhub.DefaultApi()
 
 class Dashboard extends Component {
     constructor(props){
@@ -20,6 +24,7 @@ class Dashboard extends Component {
         }
         this.getUserPosts();
         this.getStocks();
+        // this.getQuotes();
     }
 
     handleInput = (val) => {
@@ -30,6 +35,34 @@ class Dashboard extends Component {
         axios.get(`/api/symbols/${this.props.user.user_id}`)
         .then(res => this.setState({stocks: res.data}))
         .catch(err => console.log(err));
+    }
+
+    // getNews = (symbol) => {
+    //     let date= moment().format("YYYY-MM-DD")
+    //     console.log(date)
+    //     return finnhubClient.companyNews(`${symbol}`, `${date}`, `${date}`, (error, data, response) => {
+    //         if (error) {
+    //             console.error(error);
+    //         } else {
+    //             console.log(data)
+    //         }
+    //     });
+    // }
+
+    // getQuotes = async(symbol) => {
+    //     return await finnhubClient.quote(`${symbol}`, (error, data, response) => {
+    //     if(error){console.log(error)}
+    //     console.log(response)
+    //     return data
+    //     })
+    // }
+
+    deleteSymbol = (symbol) => {
+        axios.delete(`/api/symbol/${symbol}`)
+        .then(() => {
+            this.getStocks();
+        })
+        .catch(err => console.log(err))
     }
 
     getUserPosts = () => {
@@ -56,14 +89,23 @@ class Dashboard extends Component {
     }
 
     render(){
-        console.log(this.props.data)
-        const mappedStocks = this.state.stocks.map((symbol, i) => (
-            <div className = 'symbol-box'>
-                <span className= 'symbol'>
-                    {symbol.symbol}
-                </span>
+        
+        const mappedStocks = this.state.stocks.map((symbol, i) => {
+            
+            return <div 
+                    key={symbol.symbol.uniqueId}
+                    className = 'symbol-box'>
+                        <span className= 'symbol'>
+                            {symbol.symbol}
+                        </span>
+                <button className = 'deletebtn' onClick={() => this.deleteSymbol(symbol.stock_id)}>Delete
+                </button>
+                {/* <span className = 'quote'>
+                    {console.log(this.getQuotes(symbol.symbol).c)}
+                </span> */}
+                
             </div>
-        ))
+        })
         const mappedPosts = this.state.posts.map((post, i) => (
             <div className='post-box'>
                 <textarea 

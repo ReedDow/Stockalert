@@ -1,4 +1,3 @@
-const { default: MajorDevelopments } = require("finnhub/dist/model/MajorDevelopments");
 
 module.exports = {
     //When building handler functions, make sure to consider:
@@ -56,5 +55,14 @@ module.exports = {
         db.stocks.get_symbol(id)
         .then(symbols => res.status(200).send(symbols))
         .catch(err => res.status(500).send(err));
-    }
+    },
+
+    deleteSymbol: (req, res) => {
+        const {id} = req.params,
+            db = req.app.get('db');
+
+        db.stocks.delete_symbol(id)
+        .then(() => res.sendStatus(200))
+        .catch(err => res.status(500).send(err));
+    },
 }

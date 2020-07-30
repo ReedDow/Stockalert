@@ -8,10 +8,9 @@ const
     authCtrl = require('./controllers/authController'),
     mainCtrl = require('./controllers/mainController'),
     nodemailer = require("nodemailer"),
-
     
 
- transporter = nodemailer.createTransport({
+    transporter = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
             user: process.env.GMAIL_USER,
@@ -31,6 +30,16 @@ app.use(session({
     secret: SESSION_SECRET,
     cookie: {maxAge: 1000 * 60 * 60 * 24 * 365}
 }));
+
+transporter.verify = nodemailer.createTransport(transport)
+
+transporter.verify((error, success) => {
+    if (error) {
+        console.log(error);
+    } else {
+        console.log('It works!');
+    }
+});
 
 massive({
     connectionString: CONNECTION_STRING,
@@ -58,6 +67,7 @@ app.put('/api/user/:id', mainCtrl.updateUsername);
 //stock endpoints
 app.post('/api/symbol', mainCtrl.addSymboltoDB)
 app.get('/api/symbols/:id', mainCtrl.getSymbolfromDB)
+app.delete('/api/symbol/:id', mainCtrl.deleteSymbol)
 
 
 
