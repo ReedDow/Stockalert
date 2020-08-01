@@ -40,19 +40,7 @@ module.exports = {
         res.status(202).send(req.session.user);
     },
 
-    // confirmEmail: async(req, res => {
-    //     try{
-    //         const {email: {id}} = jwt.verify(req.params.token, EMAIL_SECRET.process.env);
-    //         await db.users.update({confirmed: true}, {where: {id} });
-    //     }   
-    //     catch (err) {
-    //     res.send('error');
-    //     }
-    //     return res.redirect('http:./localhost:4000/landing')
-    // }),
-    
     logout: (req, res) => {
-        //logout clears out the session of user data
         req.session.destroy();
         res.sendStatus(200);
     }

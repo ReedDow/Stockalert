@@ -1,5 +1,6 @@
 import {connect} from 'react-redux';
 import './scss/home.css';
+import {ToastsContainer, ToastsStore} from 'react-toasts';
 import React, { Component } from "react";
 import axios from "axios";
 const finnhub = require('finnhub');
@@ -16,7 +17,6 @@ class Home extends Component {
             descriptions: [],
             filteredSymbols: [],
             search: null,
-
         }
     }
 
@@ -25,7 +25,6 @@ class Home extends Component {
       this.getSymbols()
   }
   
-
   handleSearch = (event) => {
     let keyword = event.target.value;
     this.setState({search: keyword})
@@ -73,8 +72,10 @@ class Home extends Component {
       return(
         <div>
           <span 
-          onClick = {() => this.handleClick(data)}
-          className = 'tooltip'>
+            onClick = {() => {this.handleClick(data);
+              ToastsStore.success("Added to Watchlist") }}
+            className = 'tooltip'>
+            <ToastsContainer store={ToastsStore}/>
             <div className = 'tooltiptext'>Add to Watchlist</div>{data}
             </span>
 
@@ -86,12 +87,12 @@ class Home extends Component {
         return(
             <div className = 
             'home-body'>
+                <p className = 'intro'> Search Stocks. Add to Watchlist. Relax.</p>
                 <section className = 'searchcontainer'>
                 <input 
                     type = 'text'
                     className = 'searchinput'
-                    // value = {this.state.search}
-                    placeholder = 'search stocks'
+                    placeholder = 'search by symbol'
                     onChange ={(e) => this.handleSearch(e)}
                     />
                 <button className = 'srchbtn'>Search</button>

@@ -1,9 +1,6 @@
 
 module.exports = {
-    //When building handler functions, make sure to consider:
-    //1. What information does this handler function need to work properly?
-    //2. What db query or queries need to run in this handler function?
-    //3. What response should be sent back to the client-side?
+    
     createPost: (req, res) => {
         const {id, postContent} = req.body,
               db = req.app.get('db');

@@ -14,7 +14,8 @@ class Dashboard extends Component {
         this.state = {
             posts: [],
             stocks: [],
-            postContent: ''
+            postContent: '',
+            
         }
     }
 
@@ -49,13 +50,13 @@ class Dashboard extends Component {
     //     });
     // }
 
-    // getQuotes = async(symbol) => {
-    //     return await finnhubClient.quote(`${symbol}`, (error, data, response) => {
-    //     if(error){console.log(error)}
-    //     console.log(response)
-    //     return data
-    //     })
-    // }
+    getQuotes = async(symbol) => {
+        return await finnhubClient.quote(`${symbol}`, (error, data, response) => {
+        if(error){console.log(error)}
+        console.log(data)
+        return data
+        })
+    }
 
     deleteSymbol = (symbol) => {
         axios.delete(`/api/symbol/${symbol}`)
@@ -91,7 +92,7 @@ class Dashboard extends Component {
     render(){
         
         const mappedStocks = this.state.stocks.map((symbol, i) => {
-            
+            console.log(symbol)
             return <div 
                     key={symbol.symbol.uniqueId}
                     className = 'symbol-box'>
@@ -101,7 +102,7 @@ class Dashboard extends Component {
                 <button className = 'deletebtn' onClick={() => this.deleteSymbol(symbol.stock_id)}>Delete
                 </button>
                 {/* <span className = 'quote'>
-                    {console.log(this.getQuotes(symbol.symbol).c)}
+                    {console.log(this.getQuotes(symbol))}
                 </span> */}
                 
             </div>
