@@ -12,14 +12,13 @@ class Landing extends Component {
             email: '',
             password: '',
             verPassword: '',
-            picture: '',
             registerView: false
         }
     }
 
     componentDidMount(){
         if(this.props.user.email){
-            this.props.history.push('/home');
+            this.props.history.push('/dash');
         }
     }
 
@@ -39,7 +38,7 @@ class Landing extends Component {
                 //set user somewhere that the app can use it
                 this.props.getUser(res.data);
                 //route the users away from landing, to dash
-                this.props.history.push('/home');
+                this.props.history.push('/dash');
             })
             .catch(err => console.log(err))
         } else {
@@ -54,7 +53,7 @@ class Landing extends Component {
             //set user somewhere that the app can use it (redux)
             this.props.getUser(res.data);
             //route the user away from landing, to dash
-            this.props.history.push('/home');
+            this.props.history.push('/dash');
         })
         .catch(err => console.log(err));
     }

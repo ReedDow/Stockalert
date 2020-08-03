@@ -26,7 +26,7 @@ email: async(req, res, next) => {
         let info = await transporter.sendMail({
             from: name,
             to: email,
-            subject: 'hi',
+            subject: 'Email from TestAlert',
             text: content,
         }, (err, response) => {
             if(err) {

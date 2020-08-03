@@ -15,6 +15,9 @@ class Dashboard extends Component {
             posts: [],
             stocks: [],
             postContent: '',
+            quotes: {},
+            news: [],
+            toggle: false
             
         }
     }
@@ -25,7 +28,7 @@ class Dashboard extends Component {
         }
         this.getUserPosts();
         this.getStocks();
-        // this.getQuotes();
+        
     }
 
     handleInput = (val) => {
@@ -38,24 +41,30 @@ class Dashboard extends Component {
         .catch(err => console.log(err));
     }
 
-    // getNews = (symbol) => {
-    //     let date= moment().format("YYYY-MM-DD")
-    //     console.log(date)
-    //     return finnhubClient.companyNews(`${symbol}`, `${date}`, `${date}`, (error, data, response) => {
-    //         if (error) {
-    //             console.error(error);
-    //         } else {
-    //             console.log(data)
-    //         }
-    //     });
-    // }
+    getNews = (symbol) => {
+        let date= moment().format("YYYY-MM-DD")
+        return finnhubClient.companyNews(`${symbol}`, `${date}`, `${date}`, (error, data, response) => {
+            if (error) {
+                console.error(error);
+            } else {
+                
+                console.log(data)
+                this.setState({news: data})
+            }
+        });
+    }
 
-    getQuotes = async(symbol) => {
-        return await finnhubClient.quote(`${symbol}`, (error, data, response) => {
+    getQuotes = (symbol) => {
+         return finnhubClient.quote(`${symbol}`, (error, data, response) => {
         if(error){console.log(error)}
+        const{c,o,h,l} = data
+        this.setState({quotes:{c, o, h, l}})
         console.log(data)
-        return data
-        })
+        
+        this.setState({toggle: !this.state.toggle})
+        });
+        
+        
     }
 
     deleteSymbol = (symbol) => {
@@ -92,18 +101,33 @@ class Dashboard extends Component {
     render(){
         
         const mappedStocks = this.state.stocks.map((symbol, i) => {
-            console.log(symbol)
+            
             return <div 
-                    key={symbol.symbol.uniqueId}
+                    key={symbol.symbol}
                     className = 'symbol-box'>
                         <span className= 'symbol'>
                             {symbol.symbol}
                         </span>
-                <button className = 'deletebtn' onClick={() => this.deleteSymbol(symbol.stock_id)}>Delete
-                </button>
-                {/* <span className = 'quote'>
-                    {console.log(this.getQuotes(symbol))}
-                </span> */}
+                        
+                    <button className = 'deletebtn' onClick={() => this.deleteSymbol(symbol.stock_id)}>Delete From Watchlist
+                    </button>
+                
+                    <button onClick={() => this.getQuotes(symbol.symbol)}
+                            className = 'quote'>Quote</button>
+                            
+                    <span style={{display: this.state.toggle ? 'block': 'none'}}
+                     className = 'fullquote'>
+                        <div className = 'current'>{this.state.quotes.c}</div>
+                        <div className = 
+                        'open'>Open: {this.state.quotes.o}</div>
+                        <div className = 'high'>Today's High:{this.state.quotes.h}</div>
+                        <div className = 'low'>Today's Low: {this.state.quotes.l}</div>
+                    </span>
+                
+                
+                    <button onClick={() => this.getNews(symbol.symbol)}
+                            className = 'news'>News</button>
+                    {/* <span>{this.state.news}</span> */}
                 
             </div>
         })
@@ -126,6 +150,7 @@ class Dashboard extends Component {
             </div>
         ))
         return(
+            <body className = 'wBody'>
             <div className='watchlist'>
                 
                 <h1>Watchlist</h1>
@@ -137,6 +162,7 @@ class Dashboard extends Component {
                 </div>
                 
             </div>
+            </body>
         )
     }
 }

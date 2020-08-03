@@ -8,7 +8,7 @@ const
     authCtrl = require('./controllers/authController'),
     mainCtrl = require('./controllers/mainController'),
     // nodemailer = require("nodemailer"),
-    email = require('./controllers/emailController'),
+    emailCtrl = require('./controllers/emailController'),
     
     {EMAIL_SECRET,SERVER_PORT,CONNECTION_STRING,SESSION_SECRET} = process.env,
     port = SERVER_PORT,
@@ -68,7 +68,7 @@ app.get('/api/symbols/:id', mainCtrl.getSymbolfromDB)
 app.delete('/api/symbol/:id', mainCtrl.deleteSymbol)
 
 //contact endpoint - nodemailer
-app.post('/api/email', email.email) 
+app.post('/api/email', emailCtrl.email) 
 
 // (req, res, next) => {
 //     var name = req.body.name

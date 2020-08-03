@@ -29,7 +29,7 @@ class Header extends Component{
                 alt = 'Stock Alert' 
                 className='header-logo'></img>
             <nav className = 'desktop-menu'>
-                <Link to='/home' className='nav-links'>Home</   Link>
+                <Link to='/home' className='nav-links'>Search</   Link>
                 <Link to='/dash' className='nav-links'>Watchlist</Link>
                 <Link to='/contact' className='nav-links'>Contact</Link>
                 <Link to='/profile' className='nav-links'>{this.props.user.username} </Link>
@@ -38,7 +38,7 @@ class Header extends Component{
             {this.state.dropdownView
             ? (
                 <nav ClassName = 'mobile-menu'>
-                    <Link to='/home' className='nav-links'>Home</   Link>
+                    <Link to='/home' className='nav-links'>Search</   Link>
                     <Link to='/dash' className='nav-links'>Watchlist</Link>
                     <Link to='/contact' className='nav-links'>Contact</Link>
                     <Link to='/profile' className='nav-links'>{this.props.user.username} </Link>

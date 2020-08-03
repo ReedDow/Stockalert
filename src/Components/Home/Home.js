@@ -16,7 +16,7 @@ class Home extends Component {
             symbols: [],
             descriptions: [],
             filteredSymbols: [],
-            search: null,
+            search: '',
         }
     }
 
@@ -31,7 +31,8 @@ class Home extends Component {
   };
 
   handleReset = () =>{
-    this.setState({search: null})
+    this.setState({search: ''})
+    this.setState({filteredSymbols: []})
   };
 
   handleClick = (symbol) => {
@@ -62,7 +63,7 @@ class Home extends Component {
     // console.log(Stocks)
     // console.log(this.state.symbols)
     let filteredSymbols = this.state.symbols.filter((data) => {
-      if(this.state.search == null)
+      if(this.state.search == '')
         return false
       else if(data.toLowerCase().includes(this.state.search.toLowerCase())){
         return true
@@ -95,7 +96,8 @@ class Home extends Component {
                     placeholder = 'search by symbol'
                     onChange ={(e) => this.handleSearch(e)}
                     />
-                <button className = 'srchbtn'>Search</button>
+                <button onClick = {(e) => this.handleSearch(e)}
+                className = 'srchbtn'>Search</button>
                 <button 
                   onClick = {this.handleReset}
                   className = 'resetbtn'>Reset</button>
