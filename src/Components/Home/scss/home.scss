@@ -29,6 +29,7 @@ $color5:#A0B0BF;
     align-items: center;
     justify-content: space-around;
     background-color: $color2;
+    padding-bottom: 20px;
     
     top: 300px;
     box-shadow: 0px 1px 1px 0px #403D39;
@@ -163,7 +164,7 @@ $color5:#A0B0BF;
 .tooltip:hover .tooltiptext {
   visibility: visible;
   position: relative;
-  transition:  0.1s;
+  transition: transform 0.4s ease-out, 
   
 }
  
