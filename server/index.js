@@ -7,21 +7,11 @@ const
     session = require('express-session'),
     authCtrl = require('./controllers/authController'),
     mainCtrl = require('./controllers/mainController'),
-    // nodemailer = require("nodemailer"),
     emailCtrl = require('./controllers/emailController'),
     
-    {EMAIL_SECRET,SERVER_PORT,CONNECTION_STRING,SESSION_SECRET} = process.env,
+    {SERVER_PORT,CONNECTION_STRING,SESSION_SECRET} = process.env,
     port = SERVER_PORT,
     app = express();
-
-    // transporter = nodemailer.createTransport({
-    //     host: 'smtp.ethereal.email',
-    //     secure: true,
-    //     auth: {
-    //         user: USER,
-    //         pass: PASS
-    //     },
-    // }),
 
 app.use(express.json());
 
@@ -31,15 +21,6 @@ app.use(session({
     secret: SESSION_SECRET,
     cookie: {maxAge: 1000 * 60 * 60 * 24 * 365}
 }));
-
-
-// transporter.verify((error, success) => {
-//     if (error) {
-//         console.log(error);
-//     } else {
-//         console.log('Server ready');
-//     }
-// });
 
 massive({
     connectionString: CONNECTION_STRING,
@@ -53,6 +34,7 @@ massive({
 app.post('/api/register', authCtrl.register);
 app.post('/api/login', authCtrl.login);
 app.get('/api/logout', authCtrl.logout);
+app.get('/api/checkuser', authCtrl.checkuser);
 
 //post endpoints
 app.post('/api/post', mainCtrl.createPost);
@@ -69,34 +51,5 @@ app.delete('/api/symbol/:id', mainCtrl.deleteSymbol)
 
 //contact endpoint - nodemailer
 app.post('/api/email', emailCtrl.email) 
-
-// (req, res, next) => {
-//     var name = req.body.name
-//     var email = req.body.email
-//     var message = req.body.message
-//     var content = `name: ${name} \n email: ${email} \n message: ${content} `
-  
-//     var mail = {
-//         from: name,
-//         to: 'coty.west@ethereal.email', 
-//         port: 587,
-//         subject: 'New Message from StockAlert Form',
-//         text: content
-//     }
-  
-//     transporter.sendMail(mail, (err, data) => {
-//         if (err) {
-//             res.json({
-//             msg: 'fail'
-//             })
-//         } else {
-//         res.json({
-//             msg: 'success'
-//         })
-//         }
-//     })
-// }
-
-
 
 app.listen(port, () => console.log(`Running Stock Alert on port ${port}`));

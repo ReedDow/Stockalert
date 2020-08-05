@@ -35,9 +35,7 @@ class Landing extends Component {
         if(password && password === verPassword){
             axios.post('/api/register', {username, email, password})
             .then(res => {
-                //set user somewhere that the app can use it
                 this.props.getUser(res.data);
-                //route the users away from landing, to dash
                 this.props.history.push('/dash');
             })
             .catch(err => console.log(err))
@@ -50,9 +48,7 @@ class Landing extends Component {
         const {email, password} = this.state;
         axios.post('/api/login', {email, password})
         .then(res => {
-            //set user somewhere that the app can use it (redux)
             this.props.getUser(res.data);
-            //route the user away from landing, to dash
             this.props.history.push('/dash');
         })
         .catch(err => console.log(err));

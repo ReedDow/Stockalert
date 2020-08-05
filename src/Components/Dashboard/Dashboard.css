@@ -28,14 +28,14 @@
 
 .post-flex {
     position: absolute;
-    right: 10px;
+    right: 45px;
     top: 400px;
     flex-direction: column;
     background-color: transparent;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    justify-content: left;
+    text-align: left;
 }
 .stock-flex{
     width: 81vw;
@@ -73,6 +73,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: left;
+    text-align: left;
     margin: 10px;
     border-radius: 10px;
 }
@@ -80,14 +81,14 @@
 .symbol-box{
     position: relative;
     display: flex;
-    justify-content: left;
+    /* justify-content: left; */
     background-color: black;
     height: 20vh;
     width: 80vw;
     /* right: 90px; */
     flex-direction: row;
     flex-wrap: wrap;
-    /* align-items: center; */
+    align-items: center;
     margin: 10px;
     border-radius: 5px;
     font-size: 20px;
@@ -95,7 +96,8 @@
 
 .symbol{
     position: relative;
-    font-size: 50px
+    font-size: 50px;
+    padding-left: 10px;
 }
 
 .postbtn{
@@ -113,6 +115,7 @@
 }
 
 .postbtn:hover {
+    cursor: pointer;
     background-color: white;
     color: #444445;
 }
@@ -120,25 +123,42 @@
 .deletebtn1{
     background-color: transparent;
     color: white;
-    position: relative;
-    width: 100px;
-    top: 100px;
-    right: 130px;
-    height: 30px;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: 8px;
+    right: 14px;
     font-size: 15px;
     border: none;
     border-radius: 2px;
+    z-index: 1000;
+}
+.deletebtn1:hover{
+    cursor: pointer;
+}
+.btnimg{
+    width: 15px;
+    height: 15px;
+    background-color: transparent;
+    
+
 }
 
 .deletebtn2{
     background-color: transparent;
     color: #2E3047;
-    position: relative;
+    position: absolute;
     width: 100px;
     height: 30px;
     font-size: 15px;
     border: none;
     border-radius: 2px;
+    left: 45px;
+    top: 7px;
+
+}
+.deletebtn2:hover{
+    cursor: pointer;
 }
 
 .stock-notes {
@@ -150,14 +170,21 @@
 
 .quote{
     padding-top: 5px;
-    position: relative;
-    left: 20px;
-    top: 30px;
+    position: absolute;
+    left: 200px;
+    font-size: 20px;
     color: black;
     height: 80px;
     width: 150px;
     background-color: #3BBA9C;
     border: none;
+    border-radius: 5px;
+}
+
+.quote:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #444445;
 }
 .news{
     padding-top: 5px;
@@ -171,11 +198,11 @@
 .fullquote{
 
     display: flex;
-    justify-content: left;
-    position: relative;
-    width: 20vw;
-    height: 9vh;
-    left: 350px;
+    position: absolute;
+    width: 25vw;
+    height: 15vh;
+    top: 15px;
+    right: 175px;
     color: white;
     background-color: black;
     border-radius: 4px;

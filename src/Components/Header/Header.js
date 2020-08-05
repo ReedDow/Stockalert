@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter, Link} from 'react-router-dom';
 import './Header.css';
-import axios from 'axios';
 
 class Header extends Component{
     constructor(props){
@@ -12,8 +11,6 @@ class Header extends Component{
         dropdownView: false,
         }
     }
-
-    
 
     toggleDropdown = () => {
         this.setState({dropdownView: !this.state.dropdownView})
@@ -29,19 +26,19 @@ class Header extends Component{
                 alt = 'Stock Alert' 
                 className='header-logo'></img>
             <nav className = 'desktop-menu'>
-                <Link to='/home' className='nav-links'>Search</   Link>
-                <Link to='/dash' className='nav-links'>Watchlist</Link>
-                <Link to='/contact' className='nav-links'>Contact</Link>
-                <Link to='/profile' className='nav-links'>{this.props.user.username} </Link>
+                <Link to='/home' className='nav-linksA'>Search</   Link>
+                <Link to='/dash' className='nav-linksA'>Watchlist</Link>
+                <Link to='/contact' className='nav-linksA'>Contact</Link>
+                <Link to='/profile' className='nav-linksA'>{this.props.user.username} </Link>
             </nav>
             <div className = 'dropdown' onClick = {this.toggleDropdown}>Menu</div>
             {this.state.dropdownView
             ? (
                 <nav ClassName = 'mobile-menu'>
-                    <Link to='/home' className='nav-links'>Search</   Link>
-                    <Link to='/dash' className='nav-links'>Watchlist</Link>
-                    <Link to='/contact' className='nav-links'>Contact</Link>
-                    <Link to='/profile' className='nav-links'>{this.props.user.username} </Link>
+                    <Link to='/home' className='nav-linksB'>Search</   Link>
+                    <Link to='/dash' className='nav-linksB'>Watchlist</Link>
+                    <Link to='/contact' className='nav-linksB'>Contact</Link>
+                    <Link to='/profile' className='nav-linksB'>{this.props.user.username} </Link>
                 </nav>
             )
             : null}

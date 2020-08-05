@@ -19,14 +19,14 @@ class Dashboard extends Component {
             postContent: '',
             news: [],
             toggle: false
-            
         }
     }
 
     componentDidMount(){
-        if(!this.props.user.email){
-            this.props.history.push('/');
-        }
+
+        axios.get('/api/checkuser')
+            .then()
+            .catch( () => this.props.history.push('/'));
         this.getUserPosts();
         this.getStocks();
         
@@ -48,7 +48,6 @@ class Dashboard extends Component {
             if (error) {
                 console.error(error);
             } else {
-                
                 console.log(data)
                 this.setState({news: data})
             }
@@ -98,7 +97,12 @@ class Dashboard extends Component {
                 <p className='stock-notes'>
                     {post.note_content}
                     </p>
-                <button className = 'deletebtn2' onClick={() => this.deletePost(post.note_id)}>Delete
+                <button className = 'deletebtn2' onClick={() => this.deletePost(post.note_id)}>
+                <img 
+                        src="https://img.icons8.com/ios-glyphs/30/000000/delete-sign.png"
+                        alt='delete from watchlist'
+                        className = 'btnimg'>
+                    </img>
                 </button>
             </div>
         ))

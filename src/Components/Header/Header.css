@@ -31,17 +31,23 @@
     
 }
 
-.nav-links {
+.nav-linksA {
     position: relative;
     right: 100px;
     text-decoration: none;
     color: #A0B0BF;
     font-size: 24px;
-    padding: 10px;   
+    padding: 10px;  
+    padding-right: 10px; 
     transition: transform 0.4s ease-out, box-shadow 0.4s;
 }
 
-.nav-links::after {
+.desktop-menu{
+  margin-right: 15px;
+
+}
+
+.nav-linksA::after {
     content: "";
     position: absolute;
     top: 50%;
@@ -57,7 +63,7 @@
     visibility: hidden;
   }
 
-  .nav-links::before {
+  .nav-linksA::before {
     content: "";
     position: absolute;
     width: 100%;
@@ -75,24 +81,24 @@
     cursor: pointer;
   }
   
-  .nav-links:hover,
-  .nav-links:focus {
+  .nav-linksA:hover,
+  .nav-linksA:focus {
     box-shadow: 0 13px 33px -7px white;
     transform: translateY(-5px);
   }
   
-  .nav-links:hover::before,
-  .nav-links:focus::before,
-  .nav-links:hover::after,
-  .nav-links:focus::after {
+  .nav-linksA:hover::before,
+  .nav-linksA:focus::before,
+  .nav-linksA:hover::after,
+  .nav-linksA:focus::after {
     visibility: visible;
     opacity: 0.4;
   }
   
-  .nav-links:hover .Pricetooltip,
-  .nav-links:hover .Bottom,
-  .nav-links:focus .Pricetooltip,
-  .nav-links:focus .Bottom {
+  .nav-linksA:hover .Pricetooltip,
+  .nav-linksA:hover .Bottom,
+  .nav-linksA:focus .Pricetooltip,
+  .nav-linksA:focus .Bottom {
     opacity: 0;
     visibility: hidden;
   }
@@ -103,6 +109,9 @@
 .mobile-menu {
     display: none;
     }
+.nav-linksB{
+  display: none;
+}
 
 @media(max-width: 768px){
     .header-container{
@@ -114,24 +123,28 @@
         height: 150px;
         width: 150px;
     }    
-    .nav-links{
+    /* .nav-linksB{
     color: black;
     font-size: 20px;
-    }
+    } */
 
     .desktop-menu{
         display: none;
     }
+    .nav-linksA{
+      display: none;
+    }
 
     .dropdown{
-        display: initial;
-        position: absolute;
-        right: 100px;
-        top: 21px;
-        color: black;
-        font-size: 25px;
-        cursor: pointer;
-        }
+      
+      display: initial;
+      position: absolute;
+      right: 100px;
+      top: 21px;
+      color: black;
+      font-size: 25px;
+      cursor: pointer;
+            }
 
     .mobile-menu{
         display: initial;
@@ -143,10 +156,8 @@
         right: 0px;
         font-size: 23px;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-evenly;
         z-index: 10
         }
-
-        
     }

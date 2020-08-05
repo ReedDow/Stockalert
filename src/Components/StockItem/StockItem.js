@@ -14,6 +14,16 @@ class StockItem extends Component {
         }
     }
 
+    componentDidUpdate(){
+        this.emailAlert()
+    }
+
+    emailAlert = () => {
+        if((`${this.state.quotes.h}`-`${this.state.quotes.l}`)/`${this.state.quotes.h}`> .05){
+        axios.post(`/api/email`,{email: this.props.user.email, symbol: this.state.symbol.symbol})
+        }
+    }
+
     getQuotes = (symbol) => {
         return finnhubClient.quote(`${symbol}`, (error, data, response) => {
        if(error){console.log(error)}
@@ -43,7 +53,12 @@ class StockItem extends Component {
                     {symbol.symbol}
                 </span>
 
-                <button className='deletebtn1' onClick={() => this.deleteSymbol(symbol.stock_id)}>Delete From Watchlist
+                <button className='deletebtn1' onClick={() => this.deleteSymbol(symbol.stock_id)}>
+                    <img 
+                        src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSxE-diSWIaqD3s2eKjTQVPDrHYCuX0OjqDIQ&usqp=CAU'
+                        alt='delete from watchlist'
+                        className = 'btnimg'>
+                    </img>
                     </button>
 
                 <button onClick={() => this.getQuotes(symbol.symbol)}
