@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
+import moment from 'moment';
 const finnhub = require('finnhub');
 const api_key = finnhub.ApiClient.instance.authentications['api_key'];
 api_key.apiKey = "bsdhv07rh5retdgr9tdg"
@@ -10,8 +11,10 @@ class StockItem extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            toggle: false,
+            toggleQuote: false,
+            toggleNews: false,
             quotes: {},
+            news: [],
         }
     }
 
@@ -32,9 +35,31 @@ class StockItem extends Component {
        this.setState({quotes:{c, o, h, l}})
        console.log(data)
 
-       this.setState({toggle: !this.state.toggle})
+       this.setState({toggleQuote: !this.state.toggleQuote})
        }); 
    }
+
+   getNews = (symbol) => {
+    let date= moment().format("YYYY-MM-DD")
+    
+    return finnhubClient.companyNews(`${symbol}`, `${date}`, `${date}`, (error, data, response) => {
+        let dataArr=data.slice(0,5)
+        this.state.news =  dataArr.map( elem => {
+            return elem.dataArr 
+        })
+        if (error) {
+            console.error(error);
+        } else {
+            console.log(dataArr)
+            this.setState({news: [dataArr[0].headline, dataArr[0].url, dataArr[0].image]})
+            this.setState({toggleNews: !this.state.toggleNews})
+            console.log(this.state.news)
+        }
+    });
+
+}
+
+
 
    deleteSymbol = (symbol) => {
     axios.delete(`/api/symbol/${symbol}`)
@@ -45,6 +70,7 @@ class StockItem extends Component {
 }
 
     render() {
+        
         const {symbol}=this.props
         return (
             <div
@@ -65,7 +91,9 @@ class StockItem extends Component {
                 <button onClick={() => this.getQuotes(symbol.symbol)}
                     className='quote'>Quote</button>
 
-                <span style={{ display: this.state.toggle ? 'block' : 'none' }}
+                
+
+                <span style={{ display: this.state.toggleQuote ? 'block' : 'none' }}
                     className='fullquote'>
                     <div className='current'>{this.state.quotes.c}</div>
                     <div className=
@@ -75,9 +103,18 @@ class StockItem extends Component {
                 </span>
 
 
-                {/* <button onClick={() => this.getNews(symbol.symbol)}
-                    className='news'>News</button> */}
-                {/* <span>{this.state.news}</span> */}
+                <button onClick={() => this.getNews(symbol.symbol)}
+                    className='news'>News</button>
+
+                <span style={{display: this.state.toggleNews ? 'block'
+                : 'none'}}
+                    className='fullNews'>
+                        <a style={{display: this.state.news[0]}} href = {this.state.news[1]} target = "_blank" 
+                        rel = "noopener noreferrer"
+                        className='headline'>{this.state.news[0]}</a>
+                        <img src={this.state.news[2]}
+                            className = 'newsImg'></img>
+                    </span>
 
             </div>
 

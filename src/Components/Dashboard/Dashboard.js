@@ -3,12 +3,10 @@ import StockItem from '../StockItem/StockItem';
 import {connect} from 'react-redux';
 import './Dashboard.scss';
 import axios from 'axios';
-import moment from 'moment';
-import '.././delete.svg';
-const finnhub = require('finnhub');
-const api_key = finnhub.ApiClient.instance.authentications['api_key'];
-api_key.apiKey = "bsdhv07rh5retdgr9tdg"
-const finnhubClient = new finnhub.DefaultApi()
+// const finnhub = require('finnhub');
+// const api_key = finnhub.ApiClient.instance.authentications['api_key'];
+// api_key.apiKey = "bsdhv07rh5retdgr9tdg"
+// const finnhubClient = new finnhub.DefaultApi()
 
 class Dashboard extends Component {
     constructor(props){
@@ -17,14 +15,12 @@ class Dashboard extends Component {
             posts: [],
             stocks: [],
             postContent: '',
-            news: [],
             toggle: false,
             dropdownView: false,
         }
     }
 
     componentDidMount(){
-
         axios.get('/api/checkuser')
             .then()
             .catch( () => this.props.history.push('/'));
@@ -41,18 +37,6 @@ class Dashboard extends Component {
         axios.get(`/api/symbols/${this.props.user.user_id}`)
         .then(res => this.setState({stocks: res.data}))
         .catch(err => console.log(err));
-    }
-
-    getNews = (symbol) => {
-        let date= moment().format("YYYY-MM-DD")
-        return finnhubClient.companyNews(`${symbol}`, `${date}`, `${date}`, (error, data, response) => {
-            if (error) {
-                console.error(error);
-            } else {
-                console.log(data)
-                this.setState({news: data})
-            }
-        });
     }
 
     getUserPosts = () => {
@@ -85,6 +69,7 @@ class Dashboard extends Component {
             return <StockItem 
                 symbol={symbol}
                 getStocks={this.getStocks}
+                news={this.state.news}
                 quotes={this.state.quotes}
                 key={i} 
             />
