@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter, Link} from 'react-router-dom';
-import './Header.css';
+import './Header.scss';
 
 class Header extends Component{
     constructor(props){
@@ -28,7 +28,6 @@ class Header extends Component{
             <nav className = 'desktop-menu'>
                 <Link to='/home' className='nav-linksA'>Search</   Link>
                 <Link to='/dash' className='nav-linksA'>Watchlist</Link>
-                <Link to='/contact' className='nav-linksA'>Contact</Link>
                 <Link to='/profile' className='nav-linksA'>{this.props.user.username} </Link>
             </nav>
             <div className = 'dropdown' onClick = {this.toggleDropdown}>Menu</div>

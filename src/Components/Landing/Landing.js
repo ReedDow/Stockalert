@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {getUser} from '../../redux/reducer';
-import './Landing.css';
+import './Landing.scss';
 
 class Landing extends Component {
     constructor(props){
@@ -12,7 +12,8 @@ class Landing extends Component {
             email: '',
             password: '',
             verPassword: '',
-            registerView: false
+            registerView: false,
+            
         }
     }
 
@@ -30,7 +31,8 @@ class Landing extends Component {
         this.setState({registerView: !this.state.registerView})
     }
 
-    handleRegister = () => {
+    handleRegister = (e) => {
+        e.preventDefault()
         const {username, email, password, verPassword} = this.state;
         if(password && password === verPassword){
             axios.post('/api/register', {username, email, password})
@@ -44,7 +46,8 @@ class Landing extends Component {
         }
     }
 
-    handleLogin = () => {
+    handleLogin = (e) => {
+        e.preventDefault()
         const {email, password} = this.state;
         axios.post('/api/login', {email, password})
         .then(res => {

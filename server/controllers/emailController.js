@@ -21,7 +21,7 @@ module.exports = {
                 to: `${req.body.email}`,
                 subject: 'Stock Notification',
                 
-                text: `Please check stocks - ${req.body.symbol} has changed 5%`,
+                text: `Please check your stocks - ${req.body.symbol} has changed 5%`,
                 
                 html: `<div>Please check stocks - ${req.body.symbol} has decreased 5%</div>
                            <img src="https://www.freelogodesign.org/file/app/client/thumb/56cf6e02-8a69-4d55-87ae-0a4e94d66251_200x200.png?1595389851905"/>`,

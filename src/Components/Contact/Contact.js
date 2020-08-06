@@ -40,7 +40,7 @@ class Contact extends Component{
 
     render() {
         return (
-          <form id="contact-form" onSubmit={this.handleSubmit.bind(this)} method="POST">
+          <form id="contact-form" onSubmit={this.handleSubmit.bind(this)} method="POST" className = 'form'>
             <div className="form-group">
                 <label for="name">Name</label>
                 <input type="text" className="form-control" id="name" />

@@ -113,9 +113,14 @@
   display: none;
 }
 
-@media(max-width: 768px){
+@media(max-width: 769px){
     .header-container{
-    background-color: white;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      background-color: white;
+      height: 10vh;
     }
 
     .header-logo {
@@ -136,13 +141,11 @@
     }
 
     .dropdown{
-      
       display: initial;
-      position: absolute;
-      right: 100px;
-      top: 21px;
+      position: relative;
+      right: 60px;
       color: black;
-      font-size: 25px;
+      font-size: 40px;
       cursor: pointer;
             }
 
@@ -150,14 +153,18 @@
         display: initial;
         height: 140px;
         width: 255px;
-        background-color: white;
+        color: black;
+        background-color: orange;
         position: fixed;
-        top: 66px;
         right: 0px;
         font-size: 23px;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
-        z-index: 10
+        // z-index: 10
+        }
+        .nav-linksb{
+          color: black;
+          background-color: green;
         }
     }

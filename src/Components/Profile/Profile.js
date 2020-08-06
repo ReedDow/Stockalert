@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getUser, clearUser} from '../../redux/reducer';
 import axios from 'axios';
-import './scss/profile.css';
+import './scss/profile.scss';
 
 class Profile extends Component {
     constructor(props){
@@ -68,7 +68,6 @@ class Profile extends Component {
                         onClick={this.updateUsername}>Submit</button>
                    </div>)}
                 <h2>Email: {this.props.user.email}</h2>
-                <button className = 'prembtn'>Become Premium Member</button>
                 <button 
                     className = 'logout-button'
                     onClick={this.handleLogout}

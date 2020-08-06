@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import StockItem from '../StockItem/StockItem';
 import {connect} from 'react-redux';
-import './Dashboard.css';
+import './Dashboard.scss';
 import axios from 'axios';
 import moment from 'moment';
 import '.././delete.svg';
@@ -18,7 +18,8 @@ class Dashboard extends Component {
             stocks: [],
             postContent: '',
             news: [],
-            toggle: false
+            toggle: false,
+            dropdownView: false,
         }
     }
 
@@ -92,17 +93,10 @@ class Dashboard extends Component {
         })
         const mappedPosts = this.state.posts.map((post, i) => (
             <div className='post-box'>
-                
-                
                 <p className='stock-notes'>
                     {post.note_content}
                     </p>
-                <button className = 'deletebtn2' onClick={() => this.deletePost(post.note_id)}>
-                <img 
-                        src="https://img.icons8.com/ios-glyphs/30/000000/delete-sign.png"
-                        alt='delete from watchlist'
-                        className = 'btnimg'>
-                    </img>
+                <button className = 'deletebtn2' onClick={() => this.deletePost(post.note_id)}>x
                 </button>
             </div>
         ))

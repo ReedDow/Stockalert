@@ -24,11 +24,12 @@
 
 .watchlist h1 {
     font-size: 45px;
+    padding-top: 20px;
 }
 
 .post-flex {
     position: absolute;
-    right: 45px;
+    right: 2px;
     top: 400px;
     flex-direction: column;
     background-color: transparent;
@@ -50,7 +51,7 @@
 
 .watchlist textarea {
     height: 180px;
-    width: 190px;
+    width: 140px;
     background-color: #A0B0BF;
     color: black;
     box-sizing: border-box;
@@ -69,7 +70,7 @@
 .post-box {
     display: flex;
     background-color: #3BBA9C;
-    max-width: 175px;
+    max-width: 140px;
     flex-direction: column;
     align-items: center;
     justify-content: left;
@@ -153,7 +154,7 @@
     font-size: 15px;
     border: none;
     border-radius: 2px;
-    left: 45px;
+    right: -20px;
     top: 7px;
 
 }
@@ -202,11 +203,101 @@
     width: 25vw;
     height: 15vh;
     top: 15px;
-    right: 175px;
+    right: 100px;
     color: white;
     background-color: black;
     border-radius: 4px;
 }
 .current{
     font-size: 40px;
+}
+
+@media(max-width: 1024px){
+
+    .watchlist {
+        display: flex;
+        flex-direction: column;
+        column-width: 100px;
+        column-count: 2;
+        align-items: normal;
+        justify-content: left;
+        min-height: 100%;
+        background-color: #3C3F58;
+        color: #A0B0BF;
+        box-sizing: border-box;
+        padding-top: 20px;
+    }
+
+    .stock-flex{
+        width: 81vw;
+        position: relative;
+        left: 10px;
+        top: 60px;
+        display: flex;
+        justify-content: left;
+        flex-direction: row;
+        flex-wrap: wrap;
+        background-color: transparent;
+    }
+
+    .symbol-box{
+        position: absolute;
+        display: flex;        
+        background-color: black;
+        height: 50vh;
+        width: 60vw;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        margin: 10px;
+        border-radius: 5px;
+        font-size: 20px;
+    }
+
+    .quote{
+        padding-top: 5px;
+        position: absolute;
+        left: 180px;
+        top: 37px;
+        font-size: 20px;
+        color: black;
+        height: 40px;
+        width: 100px;
+        background-color: #3BBA9C;
+        border: none;
+        border-radius: 5px;
+    }
+    
+    .quote:hover {
+        cursor: pointer;
+        background-color: white;
+        color: #444445;
+    }
+
+    .symbol{
+        position: absolute;
+        font-size: 45px;
+        padding-left: 10px;
+        top: 30px;
+        left: 4px
+
+    }
+
+    .fullquote{
+        display: flex;
+        position: absolute;
+        width: 40vw;
+        height: 15vh;
+        top: 145px;
+        left: 60px;
+        color: white;
+        background-color: black;
+        border-radius: 4px;
+    }
+
+
+
+
+
+
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import axios from 'axios';
 const finnhub = require('finnhub');
 const api_key = finnhub.ApiClient.instance.authentications['api_key'];
@@ -20,7 +21,7 @@ class StockItem extends Component {
 
     emailAlert = () => {
         if((`${this.state.quotes.h}`-`${this.state.quotes.l}`)/`${this.state.quotes.h}`> .05){
-        axios.post(`/api/email`,{email: this.props.user.email, symbol: this.state.symbol.symbol})
+        axios.post(`/api/email`,{email: this.props.user.email, symbol: this.state.quotes})
         }
     }
 
@@ -85,4 +86,6 @@ class StockItem extends Component {
 
 }
 
-export default StockItem
+const mapStateToProps = reduxState => reduxState;
+
+export default connect(mapStateToProps)(StockItem);
