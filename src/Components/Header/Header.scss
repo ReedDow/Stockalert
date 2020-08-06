@@ -41,13 +41,42 @@
     padding-right: 10px; 
     transition: transform 0.4s ease-out, box-shadow 0.4s;
 }
+.nav-links1{
+  text-decoration: none;
+    color: #A0B0BF;
+    font-size: 24px;
+    padding: 10px;  
+    padding-right: 10px; 
+    transition: transform 0.4s ease-out, box-shadow 0.4s;
+
+}
+.nav-links2{
+  text-decoration: none;
+    color: #A0B0BF;
+    font-size: 24px;
+    padding: 10px;  
+    padding-right: 10px; 
+    transition: transform 0.4s ease-out, box-shadow 0.4s;
+  
+}
+.nav-links3{
+  text-decoration: none;
+    color: #A0B0BF;
+    font-size: 24px;
+    padding: 10px;  
+    padding-right: 10px; 
+    transition: transform 0.4s ease-out, box-shadow 0.4s;
+  
+}
 
 .desktop-menu{
   margin-right: 15px;
 
 }
 
-.nav-linksA::after {
+.nav-links1::after, 
+.nav-links2::after, 
+.nav-links3::after {
     content: "";
     position: absolute;
     top: 50%;
@@ -63,14 +92,16 @@
     visibility: hidden;
   }
 
-  .nav-linksA::before {
+  .nav-links1::after, 
+.nav-links2::after, 
+.nav-links3::after {
     content: "";
     position: absolute;
     width: 100%;
     height: 100%;
     
-    top: 0;
-    left: 0;
+    top: 200;
+    // left: 50px;
     bottom: 0;
     right: 0;
     z-index: 10;
@@ -81,27 +112,39 @@
     cursor: pointer;
   }
   
-  .nav-linksA:hover,
-  .nav-linksA:focus {
+  .nav-links1:hover, 
+  .nav-links2:hover, 
+  .nav-links3:hover, 
+  .nav-links1:focus, 
+  .nav-links2:focus, 
+  .nav-links3:focus{
     box-shadow: 0 13px 33px -7px white;
     transform: translateY(-5px);
   }
   
-  .nav-linksA:hover::before,
-  .nav-linksA:focus::before,
-  .nav-linksA:hover::after,
-  .nav-linksA:focus::after {
+  .nav-links1:hover::before, 
+  .nav-links2:hover::before, 
+  .nav-links3:hover::before, 
+  .nav-links1:focus::before, 
+  .nav-links2:focus::before, 
+  .nav-links3:focus::before,
+  .nav-links1:hover::after, 
+  .nav-links2:hover::after, 
+  .nav-links3:hover::after,
+  .nav-links1:focus::after, 
+  .nav-links2:focus::after, 
+  .nav-links3:focus::after {
     visibility: visible;
     opacity: 0.4;
   }
   
-  .nav-linksA:hover .Pricetooltip,
-  .nav-linksA:hover .Bottom,
-  .nav-linksA:focus .Pricetooltip,
-  .nav-linksA:focus .Bottom {
-    opacity: 0;
-    visibility: hidden;
-  }
+  // .nav-linksA:hover .Pricetooltip,
+  // .nav-linksA:hover .Bottom,
+  // .nav-linksA:focus .Pricetooltip,
+  // .nav-linksA:focus .Bottom {
+  //   opacity: 0;
+  //   visibility: hidden;
+  // }
 
 .dropdown {
     display: none;
@@ -109,9 +152,11 @@
 .mobile-menu {
     display: none;
     }
-.nav-linksB{
-  display: none;
-}
+    // .nav-links4, 
+    // .nav-links5, 
+    // .nav-links6 {
+    //   display: none;
+    // }
 
 @media(max-width: 769px){
     .header-container{
@@ -136,35 +181,50 @@
     .desktop-menu{
         display: none;
     }
-    .nav-linksA{
+    .nav-links1, 
+    .nav-links2, 
+    .nav-links3 {
       display: none;
     }
 
     .dropdown{
-      display: initial;
-      position: relative;
-      right: 60px;
+      display: inline-block;
+      position: absolute;
       color: black;
       font-size: 40px;
       cursor: pointer;
+      right: 50px;
             }
 
     .mobile-menu{
-        display: initial;
-        height: 140px;
-        width: 255px;
+        display: block;
+        position: absolute;
         color: black;
-        background-color: orange;
-        position: fixed;
-        right: 0px;
-        font-size: 23px;
+        background-color: white;
+        font-size: 30px;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
-        // z-index: 10
+        
         }
-        .nav-linksb{
+
+        ul{
+          position: absolute;
+          right: 30px;
+          top: 50px;
+          display: flex;
+          flex-direction: column;
+          z-index: 1;
+        }
+
+        .nav-links4, 
+        .nav-links5, 
+        .nav-links6 {
+          justify-content: space-evenly;
           color: black;
-          background-color: green;
+          background-color: white;
+          text-decoration: none;
+          font-size: 25px;
+          padding: 12px 16px;
         }
     }

@@ -18,13 +18,18 @@ class StockItem extends Component {
         }
     }
 
+    // componentDidMount(){
+    //     this.getQuotes()
+    //     // this.getNews()
+    // }
+
     componentDidUpdate(){
         this.emailAlert()
     }
 
     emailAlert = () => {
         if((`${this.state.quotes.h}`-`${this.state.quotes.l}`)/`${this.state.quotes.h}`> .05){
-        axios.post(`/api/email`,{email: this.props.user.email, symbol: this.state.quotes})
+        axios.post(`/api/email`,{email: this.props.user.email, symbol: this.props.symbol.symbol})
         }
     }
 
@@ -91,8 +96,6 @@ class StockItem extends Component {
                 <button onClick={() => this.getQuotes(symbol.symbol)}
                     className='quote'>Quote</button>
 
-                
-
                 <span style={{ display: this.state.toggleQuote ? 'block' : 'none' }}
                     className='fullquote'>
                     <div className='current'>{this.state.quotes.c}</div>
@@ -101,7 +104,6 @@ class StockItem extends Component {
                     <div className='high'>Today's High:{this.state.quotes.h}</div>
                     <div className='low'>Today's Low: {this.state.quotes.l}</div>
                 </span>
-
 
                 <button onClick={() => this.getNews(symbol.symbol)}
                     className='news'>News</button>

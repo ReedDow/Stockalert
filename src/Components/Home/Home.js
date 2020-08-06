@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import './scss/home.css';
+import './scss/home.scss';
 import {ToastsContainer, ToastsStore} from 'react-toasts';
 import React, { Component } from "react";
 import axios from "axios";
@@ -77,7 +77,8 @@ class Home extends Component {
               ToastsStore.success("Added to Watchlist") }}
             className = 'tooltip'>
             <ToastsContainer store={ToastsStore}/>
-            <div className = 'tooltiptext'>Add to Watchlist</div>{data}
+            
+            {data}
             </span>
 
         </div>
@@ -104,9 +105,8 @@ class Home extends Component {
                 </section>
 
                 <section className = 'dashboard'>
-                </section>
-
                 {filteredSymbols}
+                </section>
 
             </div>
         )

@@ -26,18 +26,19 @@ class Header extends Component{
                 alt = 'Stock Alert' 
                 className='header-logo'></img>
             <nav className = 'desktop-menu'>
-                <Link to='/home' className='nav-linksA'>Search</   Link>
-                <Link to='/dash' className='nav-linksA'>Watchlist</Link>
-                <Link to='/profile' className='nav-linksA'>{this.props.user.username} </Link>
+                <Link to='/home' className='nav-links1'>Search</   Link>
+                <Link to='/dash' className='nav-links2'>Watchlist</Link>
+                <Link to='/profile' className='nav-links3'>{this.props.user.username} </Link>
             </nav>
             <div className = 'dropdown' onClick = {this.toggleDropdown}>Menu</div>
             {this.state.dropdownView
             ? (
                 <nav ClassName = 'mobile-menu'>
-                    <Link to='/home' className='nav-linksB'>Search</   Link>
-                    <Link to='/dash' className='nav-linksB'>Watchlist</Link>
-                    <Link to='/contact' className='nav-linksB'>Contact</Link>
-                    <Link to='/profile' className='nav-linksB'>{this.props.user.username} </Link>
+                    <ul>
+                    <Link to='/home' className='nav-links4'>Search</   Link>
+                    <Link to='/dash' className='nav-links5'>Watchlist</Link>
+                    <Link to='/profile' className='nav-links6'>{this.props.user.username} </Link>
+                    </ul>
                 </nav>
             )
             : null}

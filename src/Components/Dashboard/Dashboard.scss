@@ -189,8 +189,8 @@
 }
 .news{
     top: 10px;
-    position: relative;
-    left: 200px;
+    position: absolute;
+    left: 300px;
     color: black;
     height: 40px;
     width: 80px;
@@ -207,10 +207,9 @@
     width: 20vw;
     height: 15vh;
     bottom: 25px;
-    left: 10px;
+    padding-left: 10px;
     color: white;
     background-color: transparent;
-    border-radius: 4px;
 }
 .current{
     font-size: 40px;
@@ -222,7 +221,7 @@
     width: 40vw;
     height: 10vh;
     top: 10px;
-    right: 10px;
+    left: 400px;
     color: white;
     background-color: transparent;
     border-radius: 4px;
@@ -241,7 +240,7 @@
     position: absolute;
     font-size: 15px;
     width: 250px;
-    right: 50px;
+    left: 150px;
 }
 
 @media(max-width: 1024px){
@@ -249,9 +248,9 @@
     .watchlist {
         display: flex;
         flex-direction: column;
-        column-width: 100px;
-        column-count: 2;
-        align-items: normal;
+        column-width: 10px;
+        column-count: 1;
+        align-items: left;
         justify-content: left;
         min-height: 100%;
         background-color: #3C3F58;
@@ -267,18 +266,17 @@
         top: 60px;
         display: flex;
         justify-content: left;
-        flex-direction: row;
-        flex-wrap: wrap;
+        flex-direction: column;
         background-color: transparent;
     }
 
     .symbol-box{
-        position: absolute;
+        // position: absolute;
         display: flex;        
         background-color: black;
         height: 50vh;
-        width: 60vw;
-        flex-direction: row;
+        width: 70vw;
+        flex-direction:  row;
         flex-wrap: wrap;
         align-items: center;
         margin: 10px;
@@ -315,9 +313,9 @@
         left: 4px
     }
     .news{
-        position: relative;
-        left: 150px;
-        top: 150px;
+        position: absolute;
+        left:200px;
+        top: 321px;
         color: black;
         height: 40px;
         width: 80px;
@@ -342,8 +340,8 @@
         position: absolute;
         width: 30vw;
         height: 10vh;
-        top: 15px;
-        right: 10px;
+        top: 97px;
+        left: 200px;
         color: white;
         background-color: transparent;
         border-radius: 4px;
@@ -352,8 +350,8 @@
         position: absolute;
         height: auto;
         width: 100px;
-        left: 10px;
-        top: 10px;
+        // left: 250px;
+        // top: 10px;
     }
     .headline{
         text-decoration: none;
@@ -363,13 +361,25 @@
         position: absolute;
         font-size: 15px;
         width: 130px;
-        right: 10px;
+        // padding-left: -10px;
     }
 }
 
 @media (max-width: 768px) {
     .newsImg{
-        display: none;
+        position: absolute;
+        height: auto;
+        width: 80px;
+        left: -5px;
+        top: 10px;
+    }
+    .symbol-box{
+        width: 60vw;
+    }
+
+    .headline{
+        top: 80px;
+        left: -35px;
     }
 
 }

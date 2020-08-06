@@ -7,8 +7,7 @@ $color5:#A0B0BF;
 .home-body{
     
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
     background-color: $color1;
     color: $color3;
     justify-content: center;
@@ -29,8 +28,7 @@ $color5:#A0B0BF;
     align-items: center;
     justify-content: space-around;
     background-color: $color2;
-    padding-bottom: 20px;
-    
+    padding: 10px;
     top: 300px;
     box-shadow: 0px 1px 1px 0px #403D39;
     border-radius: 2px;
@@ -68,8 +66,15 @@ $color5:#A0B0BF;
 }
 
 .dashboard{
+  position: absolute;
+  display: flex;
+  top: 400px;
+  // flex-direction: row;
+  flex-wrap: wrap;
+  width: 100vw;
   align-items: center;
-  position: relative;
+  justify-content: center;
+
 
 }
 
@@ -88,7 +93,7 @@ $color5:#A0B0BF;
     border-radius: 5px;
     background-color: white;
     background-repeat: no-repeat;
-    position: absolute;
+    // position: absolute;
     overflow: hidden;
     transition: transform 0.4s ease-out, box-shadow 0.4s;
   }
@@ -149,21 +154,41 @@ $color5:#A0B0BF;
     visibility: hidden;
   }
 
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: $color4;
-  color: white;
-  text-align: center;
-  border-radius: 5px;
-  position: absolute;
-  z-index: 1;
+// .tooltip .tooltiptext {
+//   visibility: hidden;
+//   top: -40px;
+//   left: 60px;
+//   width: 40px;
+//   length: 100px;
+//   font-size: 12px;
+//   background-color: $color4;
+//   color: white;
+//   text-align: center;
+//   border-radius: 5px;
+//   position: absolute;
+//   z-index: 1;
+// }
+
+// .tooltip:hover .tooltiptext {
+//   visibility: visible;
+//   position: relative;
+//   transition: transform 0.4s ease-out, 
+  
+// }
+
+@media(max-width: 769px){
+  .searchcontainer{
+    position: absolute;
+    display: flex;
+    height: 60px;
+    width: 450px;
+    align-items: center;
+    justify-content: space-around;
+    background-color: $color2;
+    top: 300px;
+    box-shadow: 0px 1px 1px 0px #403D39;
+    border-radius: 2px;
 }
 
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-  position: relative;
-  transition: transform 0.4s ease-out, 
-  
 }
  
