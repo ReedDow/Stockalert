@@ -8,6 +8,7 @@ const
     authCtrl = require('./controllers/authController'),
     mainCtrl = require('./controllers/mainController'),
     emailCtrl = require('./controllers/emailController'),
+    path = require('path'),
     
     {SERVER_PORT,CONNECTION_STRING,SESSION_SECRET} = process.env,
     port = SERVER_PORT,
@@ -51,5 +52,11 @@ app.delete('/api/symbol/:id', mainCtrl.deleteSymbol)
 
 //contact endpoint - nodemailer
 app.post('/api/email', emailCtrl.email) 
+
+app.use(express.static(__dirname + '/../build'))
+
+app.get('*', (req, res)=> {
+    res.sendFile(path.join(__dirname, '../build/index.html'))
+})
 
 app.listen(port, () => console.log(`Running Stock Alert on port ${port}`));
