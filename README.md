@@ -1,15 +1,1 @@
-# MemeMountain Technologies
-
-## Frontend
-* React
-* redux
-* react-redux
-* react-router-dom
-* axios
-
-## Backend
-* express
-* dotenv
-* massive
-* express-session
-* bcryptjs
+Register, search stocks, add to Watchlist, check Quote / News, receive alert email if stock drops 5%.
