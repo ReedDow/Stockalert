@@ -38,8 +38,6 @@ class StockItem extends Component {
        if(error){console.log(error)}
        const{c,o,h,l} = data
        this.setState({quotes:{c, o, h, l}})
-       console.log(data)
-
        this.setState({toggleQuote: !this.state.toggleQuote})
        }); 
    }
@@ -53,12 +51,10 @@ class StockItem extends Component {
             return elem.dataArr 
         })
         if (error) {
-            console.error(error);
+            console.log(error);
         } else {
-            console.log(dataArr)
             this.setState({news: [dataArr[0].headline, dataArr[0].url, dataArr[0].image]})
             this.setState({toggleNews: !this.state.toggleNews})
-            console.log(this.state.news)
         }
     });
 

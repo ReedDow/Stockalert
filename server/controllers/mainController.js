@@ -36,7 +36,6 @@ module.exports = {
     },
 
     addSymboltoDB: (req, res) => {
-        console.log(req.body)
         const {id, symbol} = req.body, 
               db = req.app.get('db');
         

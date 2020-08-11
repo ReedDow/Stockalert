@@ -41,9 +41,7 @@ class Profile extends Component {
     handleLogout = () => {
         axios.get('/api/logout')
         .then(() => {
-            //clear the user from redux
             this.props.clearUser();
-            //route the user back to landing
             this.props.history.push('/');
         })
         .catch(err => console.log(err))
