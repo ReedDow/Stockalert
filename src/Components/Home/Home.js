@@ -43,6 +43,7 @@ class Home extends Component {
       .catch(err => console.log(err));
   };
 
+  //get stock symbols from API and store in state
   getSymbols = () => {
     finnhubClient.stockSymbols("US", (error, data, response) => {
       this.state.symbols =  data.map( elem => {
@@ -51,6 +52,7 @@ class Home extends Component {
   })
   };
 
+    //get stock desc from API and store in state
   getDescriptions = () => {
     finnhubClient.stockSymbols("US", (error, data, response) => {
       this.state.descriptions = data.map( elem => {

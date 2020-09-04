@@ -39,7 +39,7 @@ class Profile extends Component {
     }
 
     handleLogout = () => {
-        axios.get('/api/logout')
+        axios.get('/auth/logout')
         .then(() => {
             this.props.clearUser();
             this.props.history.push('/');
