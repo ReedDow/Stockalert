@@ -1,1 +1,1 @@
-Register, search stocks, add to Watchlist, check Quote / News, receive alert email if stock drops 5%.
+Devmountain personal project - Search US stocks and add to watchlist. View real-time stock quotes and news stories retrieved from the finnhub API. Using nodemailer the website sends an email if the stock has dropped more than 5% in a day.
