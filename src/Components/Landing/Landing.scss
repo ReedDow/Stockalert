@@ -3,8 +3,8 @@
   background-color: #3C3F58;
   display: flex;
   align-items: center;
-  justify-content: left;
-  background-image: url(https://www.azzadfunds.com/wp-content/uploads/2019/12/stocks-450.png);
+  justify-content: center;
+  background-image: url(https://static.vecteezy.com/system/resources/thumbnails/001/220/903/original/stock-market-graph-design-on-white-background.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -15,32 +15,33 @@
 
 .authentication-info {
   color: #707793;
+  background-color: rgba(235, 235, 235, 0.5);
   width: 33%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: normal;
   position: relative;
-  bottom: 150px;
-  flex-direction: column;
+  // bottom: 150px;
   align-items: center;
-  height: 400px;
-  width: 600px;
+  height: 500px;
+  width: 400px;
+  border-radius: 7px;
+  box-shadow: 4px 4px 10px 5px rgba(97, 97, 97, 0.4);
 }
 
 .logo{
   height: 200px;
- 
 }
 
 .authentication-info input {
   height: 30px;
   width: 345px;
-  background-color: #A0B0BF;
+  background-color: white;
   color: #2E3047;
   border: none;
   margin-bottom: 20px;
   font-size: 20px;
-  border-radius: 2px;
+  border-radius: 3px;
 }
 
 .authentication-info button {

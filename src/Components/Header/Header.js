@@ -20,6 +20,7 @@ class Header extends Component{
 
     render(){
     return (
+        // {Nav}
         <div>
         {this.props.location.pathname !== '/'
             ? (<div className='header-container'>
