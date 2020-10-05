@@ -79,13 +79,13 @@ class Landing extends Component {
                     <input 
                         value={this.state.email}
                         name='email'
-                        placeholder='Email'
+                        placeholder=' Email'
                         onChange={(e) => this.handleInput(e)}/>
                     <input 
                         type='password'
                         value={this.state.password}
                         name='password'
-                        placeholder='Password'
+                        placeholder=' Password'
                         onChange={(e) => this.handleInput(e)}/>
                     {this.state.registerView
                     ? (<>

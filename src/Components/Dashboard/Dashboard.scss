@@ -7,8 +7,8 @@
     align-items: normal;
     justify-content: left;
     min-height: 100%;
-    background-color: #3C3F58;
-    color: #A0B0BF;
+    background-color: #a9a9aa;
+    color: black;
     box-sizing: border-box;
     padding-top: 20px;
 }
@@ -47,6 +47,7 @@
     justify-content: left;
     flex-direction: column;
     background-color: transparent;
+    color: white;
 }
 
 .watchlist textarea {
@@ -226,7 +227,13 @@
     background-color: transparent;
     border-radius: 4px;
 }
-.newsImg{
+.newsImg1{
+    position: absolute;
+    height: auto;
+    width: 120px;
+    left: 10px;
+}
+.newsImg2{
     position: absolute;
     height: auto;
     width: 120px;

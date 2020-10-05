@@ -62,8 +62,6 @@ class Home extends Component {
   };
 
   render(){
-    // console.log(Stocks)
-    // console.log(this.state.symbols)
     let filteredSymbols = this.state.symbols.filter((data) => {
       if(this.state.search == '')
         return false
@@ -91,19 +89,19 @@ class Home extends Component {
         return(
             <div className = 
             'home-body'>
-                <p className = 'intro'> Search Stocks. Add to Watchlist. Relax.</p>
+                <p className = 'intro'> Sit back and relax. We'll email you if your stocks drop.</p>
                 <section className = 'searchcontainer'>
                 <input 
                     type = 'text'
                     className = 'searchinput'
-                    placeholder = 'search by symbol'
+                    placeholder = 'Search stocks by symbol'
                     onChange ={(e) => this.handleSearch(e)}
                     />
-                <button onClick = {(e) => this.handleSearch(e)}
+                {/* <button onClick = {(e) => this.handleSearch(e)}
                 className = 'srchbtn'>Search</button>
                 <button 
                   onClick = {this.handleReset}
-                  className = 'resetbtn'>Reset</button>
+                  className = 'resetbtn'>Reset</button> */}
                 </section>
 
                 <section className = 'dashboard'>

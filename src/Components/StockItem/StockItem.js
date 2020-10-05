@@ -15,12 +15,13 @@ class StockItem extends Component {
             toggleNews: false,
             quotes: {},
             news: [],
+            isLoaded: false,
         }
     }
 
     // componentDidMount(){
-    //     this.getQuotes()
-    //     // this.getNews()
+        // this.getQuotes()
+        // this.getNews()
     // }
 
     componentDidUpdate(){
@@ -53,14 +54,17 @@ class StockItem extends Component {
         if (error) {
             console.log(error);
         } else {
-            this.setState({news: [dataArr[0].headline, dataArr[0].url, dataArr[0].image]})
+            if(!dataArr[0] || !dataArr[1]){
+                alert('No News')
+                this.setState({news: 'No news'})
+            }else{
+            this.setState({ isLoaded: true, news: [[dataArr[0].headline, dataArr[0].url, dataArr[0].image], [dataArr[1].headline, dataArr[1].url, dataArr[1].image]] })
             this.setState({toggleNews: !this.state.toggleNews})
+            }
         }
     });
 
 }
-
-
 
    deleteSymbol = (symbol) => {
     axios.delete(`/api/symbol/${symbol}`)
@@ -71,7 +75,7 @@ class StockItem extends Component {
 }
 
     render() {
-        
+        const { toggleQuote, toggleNews, quotes, news, isLoaded } = this.state;
         const {symbol}=this.props
         return (
             <div
@@ -92,33 +96,39 @@ class StockItem extends Component {
                 <button onClick={() => this.getQuotes(symbol.symbol)}
                     className='quote'>Quote</button>
 
-                <span style={{ display: this.state.toggleQuote ? 'block' : 'none' }}
+                <span style={{ display: toggleQuote ? 'block' : 'none' }}
                     className='fullquote'>
-                    <div className='current'>{this.state.quotes.c}</div>
+                    <div className='current'>{quotes.c}</div>
                     <div className=
-                        'open'>Open: {this.state.quotes.o}</div>
-                    <div className='high'>Today's High:{this.state.quotes.h}</div>
-                    <div className='low'>Today's Low: {this.state.quotes.l}</div>
+                        'open'>Open: {quotes.o}</div>
+                    <div className='high'>Today's High:{quotes.h}</div>
+                    <div className='low'>Today's Low: {quotes.l}</div>
                 </span>
 
                 <button onClick={() => this.getNews(symbol.symbol)}
                     className='news'>News</button>
 
-                <span style={{display: this.state.toggleNews ? 'block'
+                <span style={{display: toggleNews ? 'block'
                 : 'none'}}
                     className='fullNews'>
-                        <a style={{display: this.state.news[0]}} href = {this.state.news[1]} target = "_blank" 
-                        rel = "noopener noreferrer"
-                        className='headline'>{this.state.news[0]}</a>
-                        <img src={this.state.news[2]}
-                            className = 'newsImg'></img>
+                        <a 
+                        // style={{display: this.state.news[0]}} href = {this.state.news[1]} target = "_blank" 
+                        // rel = "noopener noreferrer"
+                        className='headline1'>{(news[0])}
+                        </a>
+                        {/* <img src={this.state.news[2]}
+                            className = 'newsImg1'></img> */}
+                        <a 
+                        // style={{display: this.state.news[0]}} href = {this.state.news[1]} target = "_blank" 
+                        // rel = "noopener noreferrer"
+                        className='headline2'>{(news[1])}
+                        </a>
+                        {/* <img src={this.state.news[2]}
+                            className = 'newsImg2'></img> */}
                     </span>
-
             </div>
-
         )
     }
-
 }
 
 const mapStateToProps = reduxState => reduxState;

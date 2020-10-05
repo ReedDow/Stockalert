@@ -1,14 +1,14 @@
-$color1:#3C3F58;
-$color2:#2E3047;
-$color3:#707793;
+$color1:#474747;
+$color2:#5d5d5e;
+$color3:#a9a9aa;
 $color4:#3BBA9C;
-$color5:#A0B0BF;
+$color5:#f9f9f9;
 
 .home-body{
     
     display: flex;
     flex-direction: column;
-    background-color: $color1;
+    background-color: $color3;
     color: $color3;
     justify-content: center;
     align-items: center;
@@ -24,25 +24,25 @@ $color5:#A0B0BF;
     position: absolute;
     display: flex;
     height: 70px;
-    width: 700px;
+    width: 70vw;
     align-items: center;
     justify-content: space-around;
-    background-color: $color2;
+    // background-color: $color2;
     padding: 10px;
     top: 300px;
-    box-shadow: 0px 1px 1px 0px #403D39;
+    box-shadow: 0px 2px 2px 1px #403D39;
     border-radius: 2px;
 }
 
 .searchinput{
-    background-color: $color5;
     color: black;
     position: relative;
     top: 100;
-    width: 450px;
-    height: 30px;
+    width: 70vw;
+    height: 55px;
     font-size: 18px;
     border: none;
+    font-size: 25px;
 }
 
 .srchbtn{
@@ -51,18 +51,19 @@ $color5:#A0B0BF;
     background-color: $color4;
     border: none;
     font-size: 18px;
-    height: 30px;
+    height: 55px;
 
 }
 .resetbtn{
     position: relative;
-    background-color: #707793;
+    background-color: $color5;
     color: #2E3047;
-    height: 30px;
+    height: 55px;
     width: 60px;
     right: 10px;
     font-size: 16px;
     border: none;
+    border-radius: 4px;
 }
 
 .dashboard{

@@ -21,7 +21,6 @@
   flex-direction: column;
   justify-content: normal;
   position: relative;
-  // bottom: 150px;
   align-items: center;
   height: 500px;
   width: 400px;
@@ -34,7 +33,7 @@
 }
 
 .authentication-info input {
-  height: 30px;
+  height: 55px;
   width: 345px;
   background-color: white;
   color: #2E3047;
@@ -45,14 +44,15 @@
 }
 
 .authentication-info button {
-  height: 30px;
-  width: 120px;
+  height: 55px;
+  width: 345px;
   color: #2E3047;
   background-color: #3BBA9C;
   font-size: 20px;
   box-shadow: none;
   border-radius: 2px;
   border: none;
+  color: white;
 }
 
 .authentication-info button:hover {
@@ -72,7 +72,7 @@
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #2E3047;
+  color: lightslategray;
   opacity: 1; /* Firefox */
 }
 
