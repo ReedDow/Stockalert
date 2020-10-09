@@ -112,12 +112,6 @@
     font-size: 18px;
 }
 
-.postbtn:hover {
-    cursor: pointer;
-    background-color: white;
-    color: #444445;
-}
-
 .deletebtn1{
     background-color: transparent;
     color: white;
@@ -195,6 +189,11 @@
     border: none;
     font-size: 20px;
     border-radius: 5px;
+}
+.news:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #444445;
 }
 
 .fullquote{
@@ -291,12 +290,6 @@
         background-color: #3BBA9C;
         border: none;
         border-radius: 5px;
-    }
-    
-    .quote:hover {
-        cursor: pointer;
-        background-color: white;
-        color: #444445;
     }
 
     .symbol{
