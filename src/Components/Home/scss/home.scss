@@ -5,7 +5,6 @@ $color4:#3BBA9C;
 $color5:#f9f9f9;
 
 .home-body{
-    
     display: flex;
     flex-direction: column;
     background-color: $color3;
@@ -24,13 +23,13 @@ $color5:#f9f9f9;
     position: absolute;
     display: flex;
     height: 70px;
-    width: 70vw;
+    width: 72vw;
     align-items: center;
     justify-content: space-around;
-    // background-color: $color2;
+
     padding: 10px;
     top: 300px;
-    box-shadow: 0px 2px 2px 1px #403D39;
+    box-shadow: 0px 2px 15px 2px #403D39;
     border-radius: 2px;
 }
 
@@ -42,6 +41,7 @@ $color5:#f9f9f9;
     height: 55px;
     font-size: 18px;
     border: none;
+
     font-size: 25px;
 }
 
@@ -155,29 +155,11 @@ $color5:#f9f9f9;
     visibility: hidden;
   }
 
-// .tooltip .tooltiptext {
-//   visibility: hidden;
-//   top: -40px;
-//   left: 60px;
-//   width: 40px;
-//   length: 100px;
-//   font-size: 12px;
-//   background-color: $color4;
-//   color: white;
-//   text-align: center;
-//   border-radius: 5px;
-//   position: absolute;
-//   z-index: 1;
-// }
-
-// .tooltip:hover .tooltiptext {
-//   visibility: visible;
-//   position: relative;
-//   transition: transform 0.4s ease-out, 
-  
-// }
-
 @media(max-width: 769px){
+
+  .intro{
+    font-size: 35px;
+  }
   .searchcontainer{
     position: absolute;
     display: flex;
@@ -185,7 +167,7 @@ $color5:#f9f9f9;
     width: 450px;
     align-items: center;
     justify-content: space-around;
-    background-color: $color2;
+    // background-color: $color2;
     top: 300px;
     box-shadow: 0px 1px 1px 0px #403D39;
     border-radius: 2px;

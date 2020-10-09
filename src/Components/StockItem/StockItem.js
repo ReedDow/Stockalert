@@ -54,11 +54,11 @@ class StockItem extends Component {
         if (error) {
             console.log(error);
         } else {
-            if(!dataArr[0] || !dataArr[1]){
+            if(!dataArr[0]){
                 alert('No News')
                 this.setState({news: 'No news'})
             }else{
-            this.setState({ isLoaded: true, news: [[dataArr[0].headline, dataArr[0].url, dataArr[0].image], [dataArr[1].headline, dataArr[1].url, dataArr[1].image]] })
+            this.setState({news: [dataArr[0].headline, dataArr[0].url, dataArr[0].image]})
             this.setState({toggleNews: !this.state.toggleNews})
             }
         }
@@ -75,7 +75,7 @@ class StockItem extends Component {
 }
 
     render() {
-        const { toggleQuote, toggleNews, quotes, news, isLoaded } = this.state;
+        const { toggleQuote, toggleNews, quotes, news, } = this.state;
         const {symbol}=this.props
         return (
             <div
@@ -112,19 +112,12 @@ class StockItem extends Component {
                 : 'none'}}
                     className='fullNews'>
                         <a 
-                        // style={{display: this.state.news[0]}} href = {this.state.news[1]} target = "_blank" 
-                        // rel = "noopener noreferrer"
-                        className='headline1'>{(news[0])}
+                        style={{display: news[0]}} href = {news[1]} target = "_blank" 
+                        rel = "noopener noreferrer"
+                        className='headline'>{(news[0])}
                         </a>
-                        {/* <img src={this.state.news[2]}
-                            className = 'newsImg1'></img> */}
-                        <a 
-                        // style={{display: this.state.news[0]}} href = {this.state.news[1]} target = "_blank" 
-                        // rel = "noopener noreferrer"
-                        className='headline2'>{(news[1])}
-                        </a>
-                        {/* <img src={this.state.news[2]}
-                            className = 'newsImg2'></img> */}
+                        <img src={news[2]}
+                            className = 'newsImg'></img>
                     </span>
             </div>
         )

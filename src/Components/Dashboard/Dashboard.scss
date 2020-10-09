@@ -4,8 +4,8 @@
     flex-direction: column;
     column-width: 100px;
     column-count: 2;
-    align-items: normal;
-    justify-content: left;
+    align-items: center;
+    // justify-content: left;;
     min-height: 100%;
     background-color: #a9a9aa;
     color: black;
@@ -67,7 +67,6 @@
 }
 
 
-
 .post-box {
     display: flex;
     background-color: #3BBA9C;
@@ -83,14 +82,11 @@
 .symbol-box{
     position: relative;
     display: flex;
-    /* justify-content: left; */
     background-color: black;
     height: 30vh;
     width: 80vw;
-    /* right: 90px; */
     flex-direction: row;
     flex-wrap: wrap;
-    // align-items: center;
     margin: 10px;
     border-radius: 5px;
     font-size: 20px;
@@ -202,15 +198,15 @@
 }
 
 .fullquote{
-
     display: flex;
     position: absolute;
     width: 20vw;
     height: 15vh;
     bottom: 25px;
-    padding-left: 10px;
+    left: 10px;
     color: white;
     background-color: transparent;
+    text-align: left;
 }
 .current{
     font-size: 40px;
@@ -227,17 +223,12 @@
     background-color: transparent;
     border-radius: 4px;
 }
-.newsImg1{
+.newsImg{
     position: absolute;
     height: auto;
-    width: 120px;
-    left: 10px;
-}
-.newsImg2{
-    position: absolute;
-    height: auto;
-    width: 120px;
-    left: 10px;
+    width: 220px;
+    left: -50px;
+    top: 82px;
 }
 .headline{
     text-decoration: none;
@@ -247,21 +238,17 @@
     position: absolute;
     font-size: 15px;
     width: 250px;
-    left: 150px;
+    left: 200px;
+    top: 80px;
 }
 
 @media(max-width: 1024px){
 
     .watchlist {
         display: flex;
-        flex-direction: column;
-        column-width: 10px;
-        column-count: 1;
-        align-items: left;
-        justify-content: left;
         min-height: 100%;
-        background-color: #3C3F58;
-        color: #A0B0BF;
+        background-color: #a9a9aa;;
+        color: black;
         box-sizing: border-box;
         padding-top: 20px;
     }
@@ -341,24 +328,23 @@
         top: 90px;
         color: white;
         background-color: transparent;
+        text-align: left;
     }
     .fullNews{
         display: flex;
         position: absolute;
-        width: 30vw;
+        width: 20vw;
         height: 10vh;
         top: 97px;
-        left: 200px;
+        left: 220px;
         color: white;
         background-color: transparent;
         border-radius: 4px;
     }
     .newsImg{
-        position: absolute;
-        height: auto;
-        width: 100px;
-        // left: 250px;
-        // top: 10px;
+        width: 200px;
+        left: 100px;
+        top: -75px;
     }
     .headline{
         text-decoration: none;
@@ -368,7 +354,7 @@
         position: absolute;
         font-size: 15px;
         width: 130px;
-        // padding-left: -10px;
+        left: 100px;
     }
 }
 
@@ -377,7 +363,7 @@
         position: absolute;
         height: auto;
         width: 80px;
-        left: -5px;
+        left: -20px;
         top: 10px;
     }
     .symbol-box{
@@ -385,8 +371,9 @@
     }
 
     .headline{
-        top: 80px;
-        left: -35px;
+        top: 60px;
+        left: -20px;
+        width: 90px;
     }
 
 }

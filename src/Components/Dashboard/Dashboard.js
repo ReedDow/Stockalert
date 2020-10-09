@@ -3,10 +3,6 @@ import StockItem from '../StockItem/StockItem';
 import {connect} from 'react-redux';
 import './Dashboard.scss';
 import axios from 'axios';
-// const finnhub = require('finnhub');
-// const api_key = finnhub.ApiClient.instance.authentications['api_key'];
-// api_key.apiKey = "bsdhv07rh5retdgr9tdg"
-// const finnhubClient = new finnhub.DefaultApi()
 
 class Dashboard extends Component {
     constructor(props){
@@ -74,14 +70,13 @@ class Dashboard extends Component {
                 key={i} 
             />
 
-            
         })
         const mappedPosts = this.state.posts.map((post, i) => (
             <div className='post-box'>
                 <p className='stock-notes'>
                     {post.note_content}
                     </p>
-                <button className = 'deletebtn2' onClick={() => this.deletePost(post.note_id)}>x
+                <button className = 'deletebtn' onClick={() => this.deletePost(post.note_id)}>x
                 </button>
             </div>
         ))
@@ -90,18 +85,18 @@ class Dashboard extends Component {
                 <header className = 'header'>
                 <h1>Watchlist</h1>
                 </header>
-                <textarea 
+                {/* <textarea 
                     rows = '15'
                     cols = '20'
                     wrap = 'hard'
                     value={this.state.postContent}
                     placeholder='Write stock notes here'
-                    onChange={(e) => this.handleInput(e.target.value)}/>
-                <button className = 'postbtn' onClick={this.createPost}>
-                Save</button>
-                <div className='post-flex'>
+                    onChange={(e) => this.handleInput(e.target.value)}/> */}
+                {/* <button className = 'postbtn' onClick={this.createPost}>
+                Save</button> */}
+                {/* <div className='post-flex'>
                     {mappedPosts}
-                </div>    
+                </div>     */}
                 <div className = 'stock-flex'>
                 {mappedStocks} 
                 </div>
