@@ -15,17 +15,18 @@ class StockItem extends Component {
             toggleNews: false,
             quotes: {},
             news: [],
-            isLoaded: false,
+            loading: true,
         }
     }
 
     // componentDidMount(){
-        // this.getQuotes()
-        // this.getNews()
+    //     this.getQuotes()
+    //     this.getNews()
     // }
 
     componentDidUpdate(){
         this.emailAlert()
+
     }
 
     emailAlert = () => {
@@ -33,6 +34,7 @@ class StockItem extends Component {
         axios.post(`/api/email`,{email: this.props.user.email, symbol: this.props.symbol.symbol})
         }
     }
+
 
     getQuotes = (symbol) => {
         return finnhubClient.quote(`${symbol}`, (error, data, response) => {
@@ -55,7 +57,7 @@ class StockItem extends Component {
             console.log(error);
         } else {
             if(!dataArr[0]){
-                alert('No News')
+                alert(`No News Retrieved for ${symbol}`)
                 this.setState({news: 'No news'})
             }else{
             this.setState({news: [dataArr[0].headline, dataArr[0].url, dataArr[0].image]})
@@ -63,7 +65,6 @@ class StockItem extends Component {
             }
         }
     });
-
 }
 
    deleteSymbol = (symbol) => {
@@ -75,8 +76,9 @@ class StockItem extends Component {
 }
 
     render() {
-        const { toggleQuote, toggleNews, quotes, news, } = this.state;
+        const { toggleQuote, toggleNews, quotes, news, loading } = this.state;
         const {symbol}=this.props
+
         return (
             <div
                 key={symbol.symbol}

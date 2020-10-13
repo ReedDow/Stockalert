@@ -26,17 +26,16 @@ $color5:#f9f9f9;
     width: 72vw;
     align-items: center;
     justify-content: space-around;
-
     padding: 10px;
-    top: 300px;
-    box-shadow: 0px 2px 15px 2px #403D39;
+    top: 400px;
+    box-shadow: 1px 1px 5px 1px #403D39;
     border-radius: 2px;
 }
 
 .searchinput{
     color: black;
     position: relative;
-    top: 100;
+    top: 120;
     width: 70vw;
     height: 55px;
     font-size: 18px;
@@ -69,7 +68,7 @@ $color5:#f9f9f9;
 .dashboard{
   position: absolute;
   display: flex;
-  top: 400px;
+  top: 500px;
   // flex-direction: row;
   flex-wrap: wrap;
   width: 100vw;
