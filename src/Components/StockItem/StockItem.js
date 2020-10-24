@@ -36,7 +36,7 @@ class StockItem extends Component {
     }
 
 
-    getQuotes = (symbol) => {
+    getQuotes =  symbol => {
         return finnhubClient.quote(`${symbol}`, (error, data, response) => {
        if(error){console.log(error)}
        const{c,o,h,l} = data
@@ -45,7 +45,7 @@ class StockItem extends Component {
        }); 
    }
 
-   getNews = (symbol) => {
+   getNews =  symbol => {
     let date= moment().format("YYYY-MM-DD")
     
     return finnhubClient.companyNews(`${symbol}`, `${date}`, `${date}`, (error, data, response) => {
