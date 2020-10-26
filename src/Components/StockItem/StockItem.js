@@ -21,8 +21,8 @@ class StockItem extends Component {
     }
 
     componentDidMount(){
-        this.getQuotes()
-        
+        // this.getQuotes()
+        // this.getNews()
     }
 
     componentDidUpdate(){
@@ -59,6 +59,7 @@ class StockItem extends Component {
             if(!dataArr[0]){
                 alert(`No News Retrieved for ${symbol}`)
                 this.setState({news: 'No news'})
+                console.log(response.status)
             }else{
             this.setState({news: [dataArr[0].headline, dataArr[0].url, dataArr[0].image]})
             this.setState({toggleNews: !this.state.toggleNews})
