@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import axios from 'axios';
 import moment from 'moment';
 // import loader from '../../Assets/Images/puff.svg'
@@ -20,71 +20,67 @@ class StockItem extends Component {
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         // this.getQuotes()
         // this.getNews()
     }
 
-    componentDidUpdate(){
+    componentDidUpdate() {
         this.emailAlert()
     }
 
     emailAlert = () => {
-        if((`${this.state.quotes.h}`-`${this.state.quotes.l}`)/`${this.state.quotes.h}`> .05){
-        axios.post(`/api/email`,{email: this.props.user.email, symbol: this.props.symbol.symbol})
+        if ((`${this.state.quotes.h}` - `${this.state.quotes.l}`) / `${this.state.quotes.h}` > .05) {
+            axios.post(`/api/email`, { email: this.props.user.email, symbol: this.props.symbol.symbol })
         }
     }
 
 
-    getQuotes =  symbol => {
+    getQuotes = symbol => {
         return finnhubClient.quote(`${symbol}`, (error, data, response) => {
-       if(error){console.log(error)}
-       const{c,o,h,l} = data
-       this.setState({quotes:{c, o, h, l}})
-       this.setState({toggleQuote: !this.state.toggleQuote})
-       }); 
-   }
+            if (error) { console.log(error) }
+            const { c, o, h, l } = data
+            this.setState({ quotes: { c, o, h, l } })
+            this.setState({ toggleQuote: !this.state.toggleQuote })
+        });
+    }
 
-   getNews =  symbol => {
-    let date= moment().format("YYYY-MM-DD")
-    
-    return finnhubClient.companyNews(`${symbol}`, `${date}`, `${date}`, (error, data, response) => {
-        let dataArr=data.slice(0,5)
-        this.state.news =  dataArr.map( elem => {
-            return elem.dataArr 
-        })
-        if (error) {
-            console.log(error);
-        } else {
-            if(!dataArr[0]){
-                alert(`No News Retrieved for ${symbol}`)
-                this.setState({news: 'No news'})
-                console.log(response.status)
-            }else{
-            this.setState({news: [dataArr[0].headline, dataArr[0].url, dataArr[0].image]})
-            this.setState({toggleNews: !this.state.toggleNews})
+    getNews = symbol => {
+        let date = moment().format("YYYY-MM-DD")
+
+        return finnhubClient.companyNews(`${symbol}`, `${date}`, `${date}`, (error, data, response) => {
+            let dataArr = data.slice(0, 5)
+            this.state.news = dataArr.map(elem => {
+                return elem.dataArr
+            })
+            if (error) {
+                console.log(error);
+            } else {
+                if (!dataArr[0]) {
+                    alert(`No News Retrieved for ${symbol}`)
+                    this.setState({ news: 'No news' })
+                    console.log(response.status)
+                } else {
+                    this.setState({ news: [dataArr[0].headline, dataArr[0].url, dataArr[0].image] })
+                    this.setState({ toggleNews: !this.state.toggleNews })
+                }
             }
-        }
-    });
-}
+        });
+    }
 
-   deleteSymbol = (symbol) => {
-    axios.delete(`/api/symbol/${symbol}`)
-    .then(() => {
-        this.props.getStocks();
-    })
-    .catch(err => console.log(err))
-}
+    deleteSymbol = (symbol) => {
+        axios.delete(`/api/symbol/${symbol}`)
+            .then(() => {
+                this.props.getStocks();
+            })
+            .catch(err => console.log(err))
+    }
 
     render() {
         const { toggleQuote, toggleNews, quotes, news } = this.state;
-        const {symbol}=this.props
-        // if(this.state.isLoading){
-        //     return(
-        //         <div><img src={loader} className="loader" alt="loader" /></div>
-        //     )
-        // }
-        return(
+        const { symbol } = this.props
+        console.log(news)
+        return (
             <div
                 key={symbol.symbol}
                 className='symbol-box'>
@@ -93,12 +89,12 @@ class StockItem extends Component {
                 </span>
 
                 <button className='deletebtn1' onClick={() => this.deleteSymbol(symbol.stock_id)}>
-                    <img 
+                    <img
                         src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSxE-diSWIaqD3s2eKjTQVPDrHYCuX0OjqDIQ&usqp=CAU'
                         alt='delete from watchlist'
-                        className = 'btnimg'>
+                        className='btnimg'>
                     </img>
-                    </button>
+                </button>
 
                 <button onClick={() => this.getQuotes(symbol.symbol)}
                     className='quote'>Quote</button>
@@ -115,17 +111,24 @@ class StockItem extends Component {
                 <button onClick={() => this.getNews(symbol.symbol)}
                     className='news'>News</button>
 
-                <span style={{display: toggleNews ? 'block'
-                : 'none'}}
+                <span style={{
+                    display: toggleNews ? 'block'
+                        : 'none'
+                }}
                     className='fullNews'>
-                        <a 
-                        style={{display: news[0]}} href = {news[1]} target = "_blank" 
-                        rel = "noopener noreferrer"
+                    <a
+                        style={{ display: news[0] }} href={news[1]} target="_blank"
+                        rel="noopener noreferrer"
                         className='headline'>{(news[0])}
-                        </a>
+                    </a>
+
+                    <a href={news[1]}>
                         <img src={news[2]}
-                            className = 'newsImg'></img>
-                    </span>
+                            className='newsImg'
+                        ></img>
+                    </a>
+
+                </span>
             </div>
         )
     }
