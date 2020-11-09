@@ -14,12 +14,12 @@ class Dashboard extends Component {
             postContent: '',
             toggle: false,
             dropdownView: false,
-            isLoading: true,
+            // isLoading: true,
         }
     }
 
     componentDidMount(){
-        setTimeout(() => this.setState({isLoading: false}), 2600)
+        // setTimeout(() => this.setState({isLoading: false}), 2600)
         axios.get('/api/checkuser')
             .then()
             .catch( () => this.props.history.push('/'));
@@ -62,11 +62,11 @@ class Dashboard extends Component {
     }
 
     render(){
-         if(this.state.isLoading){
-            return(
-                <div><img src={loader} className="loader" alt="loader" /></div>
-            )
-        }
+        //  if(this.state.isLoading){
+        //     return(
+        //         <div><img src={loader} className="loader" alt="loader" /></div>
+        //     )
+        // }
         
         const mappedStocks = this.state.stocks.map((symbol, i) => {
             

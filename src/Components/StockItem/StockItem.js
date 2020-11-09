@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import moment from 'moment';
-// import loader from '../../Assets/Images/puff.svg'
+import loader from '../../Assets/Images/puff.svg'
 const finnhub = require('finnhub');
 const api_key = finnhub.ApiClient.instance.authentications['api_key'];
 api_key.apiKey = "bsdhv07rh5retdgr9tdg"
@@ -16,11 +16,12 @@ class StockItem extends Component {
             toggleNews: false,
             quotes: {},
             news: [],
-            // isLoading: true,
+            isLoading: true,
         }
     }
 
     componentDidMount() {
+        setTimeout(() => this.setState({isLoading: false}), 2000)
         // this.getQuotes()
         // this.getNews()
     }
@@ -77,6 +78,11 @@ class StockItem extends Component {
     }
 
     render() {
+        if(this.state.isLoading){
+            return(
+                <div><img src={loader} className="loader" alt="loader" /></div>
+            )
+        }
         const { toggleQuote, toggleNews, quotes, news } = this.state;
         const { symbol } = this.props
         console.log(news)
