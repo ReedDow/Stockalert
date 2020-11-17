@@ -7,6 +7,7 @@ const finnhub = require('finnhub');
 const api_key = finnhub.ApiClient.instance.authentications['api_key'];
 api_key.apiKey = "bsdhv07rh5retdgr9tdg"
 const finnhubClient = new finnhub.DefaultApi()
+const request = require('request');
 
 class StockItem extends Component {
     constructor(props) {
@@ -21,7 +22,7 @@ class StockItem extends Component {
     }
 
     componentDidMount() {
-        setTimeout(() => this.setState({isLoading: false}), 2000)
+        setTimeout(() => this.setState({ isLoading: false }), 2000)
         // this.getQuotes()
         // this.getNews()
     }
@@ -35,6 +36,14 @@ class StockItem extends Component {
             axios.post(`/api/email`, { email: this.props.user.email, symbol: this.props.symbol.symbol })
         }
     }
+
+    // getCandles = symbol => {
+    //     request(`https://finnhub.io/api/v1/stock/candle?${symbol}=AAPL&resolution=1&from=1572651390&to=1572910590&token=`, { json: true }, (err, res, body) => {
+    //         if (err) { return console.log(err); }
+    //         console.log(body.url);
+    //         console.log(body.explanation);
+    //     })
+    // };
 
 
     getQuotes = symbol => {
@@ -63,7 +72,8 @@ class StockItem extends Component {
                     console.log(response.status)
                 } else {
                     this.setState({ news: [dataArr[0].headline, dataArr[0].url, dataArr[0].image] })
-                    this.setState({ toggleNews: !this.state.toggleNews })
+                    // this.setState({ news: [[dataArr[0].headline, dataArr[0].url, dataArr[0].image], [dataArr[1].headline, dataArr[1].url, dataArr[1].image]] })
+                    // this.setState({ toggleNews: !this.state.toggleNews })
                 }
             }
         });
@@ -78,14 +88,15 @@ class StockItem extends Component {
     }
 
     render() {
-        if(this.state.isLoading){
-            return(
+        if (this.state.isLoading) {
+            return (
                 <div><img src={loader} className="loader" alt="loader" /></div>
             )
         }
         const { toggleQuote, toggleNews, quotes, news } = this.state;
         const { symbol } = this.props
-        console.log(news)
+        // console.log(news[[0][0]])
+        // console.log(news[[1][0]])
         return (
             <div
                 key={symbol.symbol}
@@ -122,17 +133,34 @@ class StockItem extends Component {
                         : 'none'
                 }}
                     className='fullNews'>
-                    <a
-                        style={{ display: news[0] }} href={news[1]} target="_blank"
-                        rel="noopener noreferrer"
-                        className='headline'>{(news[0])}
-                    </a>
+                    
 
-                    <a href={news[1]}>
-                        <img src={news[2]}
-                            className='newsImg'
-                        ></img>
-                    </a>
+                        <a
+                            style={{ display: news[0] }} href={news[1]} target="_blank"
+                            rel="noopener noreferrer"
+                            className='headline'>{(news[2])}
+                        </a> 
+
+                        <a href={news[1]}>
+                            <img src={news[2]}
+                                alt={news[1]}
+                                className='newsImg'
+                            ></img>
+                        </a>
+
+                        {/* <a
+                            style={{ display: news[[1][0]] }} href={news[[1][1]]} target="_blank"
+                            rel="noopener noreferrer"
+                            className='headline2'>{(news[[1][0]])}
+                        </a>
+
+                        {/* <a href={news[[1][0]]}>
+                            <img src={news[[1][0]]}
+                                alt={news[[1][0]]}
+                                className='newsImg2'
+                            ></img>
+                        </a> */}
+                
 
                 </span>
             </div>
