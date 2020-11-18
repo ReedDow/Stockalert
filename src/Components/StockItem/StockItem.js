@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {VictoryChart, VictoryCandlestick, VictoryAxis, VictoryTheme} from 'victory';
 import axios from 'axios';
 import moment from 'moment';
 import loader from '../../Assets/Images/puff.svg'
@@ -7,7 +8,6 @@ const finnhub = require('finnhub');
 const api_key = finnhub.ApiClient.instance.authentications['api_key'];
 api_key.apiKey = "bsdhv07rh5retdgr9tdg"
 const finnhubClient = new finnhub.DefaultApi()
-const request = require('request');
 
 class StockItem extends Component {
     constructor(props) {
@@ -15,8 +15,10 @@ class StockItem extends Component {
         this.state = {
             toggleQuote: false,
             toggleNews: false,
+            toggleCandle: false,
             quotes: {},
             news: [],
+            candle: {},
             isLoading: true,
         }
     }
@@ -37,13 +39,18 @@ class StockItem extends Component {
         }
     }
 
-    // getCandles = symbol => {
-    //     request(`https://finnhub.io/api/v1/stock/candle?${symbol}=AAPL&resolution=1&from=1572651390&to=1572910590&token=`, { json: true }, (err, res, body) => {
-    //         if (err) { return console.log(err); }
-    //         console.log(body.url);
-    //         console.log(body.explanation);
-    //     })
-    // };
+    getCandles = symbol => {
+        let timeStampCurrent = moment().unix()
+        let timeStampPast = timeStampCurrent - (168 * 60 * 60)
+        finnhubClient.stockCandles(`${symbol}`, "D", `${timeStampPast}`, `${timeStampCurrent}`, {}, (error, data, response) => {
+            if (error) { console.log(error) }
+            const { c, o, h, l } = data
+            this.setState({ candle: { c, o, h, l } })
+            this.setState({ toggleCandle: !this.state.toggleCandle })
+            console.log(this.state.candle)
+
+        });
+    };
 
 
     getQuotes = symbol => {
@@ -73,7 +80,7 @@ class StockItem extends Component {
                 } else {
                     this.setState({ news: [dataArr[0].headline, dataArr[0].url, dataArr[0].image] })
                     // this.setState({ news: [[dataArr[0].headline, dataArr[0].url, dataArr[0].image], [dataArr[1].headline, dataArr[1].url, dataArr[1].image]] })
-                    // this.setState({ toggleNews: !this.state.toggleNews })
+                    this.setState({ toggleNews: !this.state.toggleNews })
                 }
             }
         });
@@ -93,10 +100,9 @@ class StockItem extends Component {
                 <div><img src={loader} className="loader" alt="loader" /></div>
             )
         }
-        const { toggleQuote, toggleNews, quotes, news } = this.state;
+        const { toggleQuote, toggleNews, toggleCandle, quotes, news, candle } = this.state;
         const { symbol } = this.props
-        // console.log(news[[0][0]])
-        // console.log(news[[1][0]])
+        console.log(news)
         return (
             <div
                 key={symbol.symbol}
@@ -125,6 +131,31 @@ class StockItem extends Component {
                     <div className='low'>Today's Low: {quotes.l}</div>
                 </span>
 
+                <button onClick={() => this.getCandles(symbol.symbol)} className='candle'>Candle</button>
+
+                < VictoryCandlestick
+                    candleData={
+                        [
+                            { x: new Date(moment().format("YYYY, MM, DD")), open: candle.o[0], close: candle.c[0], high: candle.h[0], low: candle.l[0] },
+                            { x: new Date(2016, 6, 2), open: candle.o[1], close: candle.c[1], high: candle.h[1], low: candle.l[1] },
+                            { x: new Date(2016, 6, 3), open: candle.o[2], close: candle.c[2], high: candle.h[2], low: candle.l[2] },
+                            { x: new Date(2016, 6, 4), open: candle.o[3], close: candle.c[3], high: candle.h[3], low: candle.l[3] },
+                            { x: new Date(2016, 6, 5), open: candle.o[4], close: candle.c[4], high: candle.h[4], low: candle.l[4] }
+                        ]}
+                />
+                <VictoryChart
+                    theme={VictoryTheme.material}
+                    domainPadding={{ x: 25 }}
+                    scale={{ x: "time" }}
+                >
+                    <VictoryAxis tickFormat={(t) => `${t.getDate()}/${t.getMonth()}`} />
+                    <VictoryAxis dependentAxis />
+                    <VictoryCandlestick
+                        candleColors={{ positive: "#5f5c5b", negative: "#c43a31" }}
+                        data={this.props.candleData}
+                    />
+                </VictoryChart>
+
                 <button onClick={() => this.getNews(symbol.symbol)}
                     className='news'>News</button>
 
@@ -133,22 +164,22 @@ class StockItem extends Component {
                         : 'none'
                 }}
                     className='fullNews'>
-                    
 
-                        <a
-                            style={{ display: news[0] }} href={news[1]} target="_blank"
-                            rel="noopener noreferrer"
-                            className='headline'>{(news[2])}
-                        </a> 
 
-                        <a href={news[1]}>
-                            <img src={news[2]}
-                                alt={news[1]}
-                                className='newsImg'
-                            ></img>
-                        </a>
+                    <a
+                        style={{ display: news[0] }} href={news[1]} target="_blank"
+                        rel="noopener noreferrer"
+                        className='headline'>{(news[2])}
+                    </a>
 
-                        {/* <a
+                    <a href={news[1]}>
+                        <img src={news[2]}
+                            alt={news[1]}
+                            className='newsImg'
+                        ></img>
+                    </a>
+
+                    {/* <a
                             style={{ display: news[[1][0]] }} href={news[[1][1]]} target="_blank"
                             rel="noopener noreferrer"
                             className='headline2'>{(news[[1][0]])}
@@ -160,7 +191,7 @@ class StockItem extends Component {
                                 className='newsImg2'
                             ></img>
                         </a> */}
-                
+
 
                 </span>
             </div>
