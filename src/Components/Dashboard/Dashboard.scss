@@ -168,7 +168,7 @@
 }
 
 .quote{
-    top: 10px;
+    bottom: 10px;
     position: absolute;
     left: 200px;
     font-size: 20px;
@@ -185,8 +185,28 @@
     background-color: white;
     color: #444445;
 }
+
+.candle{
+    bottom: 10px;
+    position: absolute;
+    left: 250px;
+    font-size: 20px;
+    color: black;
+    height: 40px;
+    width: 80px;
+    background-color: #3BBA9C;
+    border: none;
+    border-radius: 5px;
+}
+
+.candle:hover{
+    cursor: pointer;
+    background-color: white;
+    color: #444445;
+}
+
 .news{
-    top: 10px;
+    bottom: 10px;
     position: absolute;
     left: 300px;
     color: black;
@@ -197,6 +217,7 @@
     font-size: 20px;
     border-radius: 5px;
 }
+
 .news:hover {
     cursor: pointer;
     background-color: white;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {VictoryChart, VictoryCandlestick, VictoryAxis, VictoryTheme} from 'victory';
+import { VictoryChart, VictoryCandlestick, VictoryAxis, VictoryTheme } from 'victory';
 import axios from 'axios';
 import moment from 'moment';
 import loader from '../../Assets/Images/puff.svg'
@@ -40,6 +40,7 @@ class StockItem extends Component {
     }
 
     getCandles = symbol => {
+        const {candle} = this.state
         let timeStampCurrent = moment().unix()
         let timeStampPast = timeStampCurrent - (168 * 60 * 60)
         finnhubClient.stockCandles(`${symbol}`, "D", `${timeStampPast}`, `${timeStampCurrent}`, {}, (error, data, response) => {
@@ -48,7 +49,32 @@ class StockItem extends Component {
             this.setState({ candle: { c, o, h, l } })
             this.setState({ toggleCandle: !this.state.toggleCandle })
             console.log(this.state.candle)
-
+            return (
+                <section>
+                < VictoryCandlestick
+                candleData={
+                    [
+                        { x: '-4', open: this.props.candle.o[0], close: candle.c[0], high: candle.h[0], low: candle.l[0] },
+                        { x: '-3', open: candle.o[1], close: candle.c[1], high: candle.h[1], low: candle.l[1] },
+                        { x: '-2', open: candle.o[2], close: candle.c[2], high: candle.h[2], low: candle.l[2] },
+                        { x: '-1', open: candle.o[3], close: candle.c[3], high: candle.h[3], low: candle.l[3] },
+                        { x: 'Today', open: candle.o[4], close: candle.c[4], high: candle.h[4], low: candle.l[4] }
+                    ]}
+            />
+            <VictoryChart
+                theme={VictoryTheme.material}
+                domainPadding={{ x: 25 }}
+                scale={{ x: "time" }}
+            >
+                <VictoryAxis />
+                <VictoryAxis dependentAxis />
+                <VictoryCandlestick
+                    candleColors={{ positive: "#00ff00", negative: "#ff0000" }}
+                    data={this.props.candleData}
+                />
+            </VictoryChart>
+            </section>
+            )
         });
     };
 
@@ -131,30 +157,12 @@ class StockItem extends Component {
                     <div className='low'>Today's Low: {quotes.l}</div>
                 </span>
 
-                <button onClick={() => this.getCandles(symbol.symbol)} className='candle'>Candle</button>
+                <button onClick={() => this.getCandles(symbol.symbol)} className='candle'>Candle
+                </button>
 
-                < VictoryCandlestick
-                    candleData={
-                        [
-                            { x: new Date(moment().format("YYYY, MM, DD")), open: candle.o[0], close: candle.c[0], high: candle.h[0], low: candle.l[0] },
-                            { x: new Date(2016, 6, 2), open: candle.o[1], close: candle.c[1], high: candle.h[1], low: candle.l[1] },
-                            { x: new Date(2016, 6, 3), open: candle.o[2], close: candle.c[2], high: candle.h[2], low: candle.l[2] },
-                            { x: new Date(2016, 6, 4), open: candle.o[3], close: candle.c[3], high: candle.h[3], low: candle.l[3] },
-                            { x: new Date(2016, 6, 5), open: candle.o[4], close: candle.c[4], high: candle.h[4], low: candle.l[4] }
-                        ]}
-                />
-                <VictoryChart
-                    theme={VictoryTheme.material}
-                    domainPadding={{ x: 25 }}
-                    scale={{ x: "time" }}
-                >
-                    <VictoryAxis tickFormat={(t) => `${t.getDate()}/${t.getMonth()}`} />
-                    <VictoryAxis dependentAxis />
-                    <VictoryCandlestick
-                        candleColors={{ positive: "#5f5c5b", negative: "#c43a31" }}
-                        data={this.props.candleData}
-                    />
-                </VictoryChart>
+                <span style={{ display: toggleCandle ? 'block' : 'none' }}
+                    className='candle'>
+                </span>
 
                 <button onClick={() => this.getNews(symbol.symbol)}
                     className='news'>News</button>
