@@ -40,7 +40,7 @@ class StockItem extends Component {
     }
 
     getCandles = symbol => {
-        const {candle} = this.state
+        const { candle } = this.state
         let timeStampCurrent = moment().unix()
         let timeStampPast = timeStampCurrent - (168 * 60 * 60)
         finnhubClient.stockCandles(`${symbol}`, "D", `${timeStampPast}`, `${timeStampCurrent}`, {}, (error, data, response) => {
@@ -49,32 +49,13 @@ class StockItem extends Component {
             this.setState({ candle: { c, o, h, l } })
             this.setState({ toggleCandle: !this.state.toggleCandle })
             console.log(this.state.candle)
-            return (
+
+            return(
                 <section>
-                < VictoryCandlestick
-                candleData={
-                    [
-                        { x: '-4', open: this.props.candle.o[0], close: candle.c[0], high: candle.h[0], low: candle.l[0] },
-                        { x: '-3', open: candle.o[1], close: candle.c[1], high: candle.h[1], low: candle.l[1] },
-                        { x: '-2', open: candle.o[2], close: candle.c[2], high: candle.h[2], low: candle.l[2] },
-                        { x: '-1', open: candle.o[3], close: candle.c[3], high: candle.h[3], low: candle.l[3] },
-                        { x: 'Today', open: candle.o[4], close: candle.c[4], high: candle.h[4], low: candle.l[4] }
-                    ]}
-            />
-            <VictoryChart
-                theme={VictoryTheme.material}
-                domainPadding={{ x: 25 }}
-                scale={{ x: "time" }}
-            >
-                <VictoryAxis />
-                <VictoryAxis dependentAxis />
-                <VictoryCandlestick
-                    candleColors={{ positive: "#00ff00", negative: "#ff0000" }}
-                    data={this.props.candleData}
-                />
-            </VictoryChart>
-            </section>
+
+                </section>
             )
+            
         });
     };
 
@@ -161,7 +142,30 @@ class StockItem extends Component {
                 </button>
 
                 <span style={{ display: toggleCandle ? 'block' : 'none' }}
-                    className='candle'>
+                    className='candleChart'>
+                        < VictoryCandlestick
+                        candleRatio={1.3}
+                        candleColors={{ positive: "#00ff00", negative: "#ff0000" }}
+                        data={
+                            [
+                                { x: moment().format('YYYY, MM, DD'), open: 10, close: 19, high: 25, low: 9},
+                                { x: moment().subtract(1, 'days').format('YYYY, MM, DD'), open: 10, close: 17, high: 18, low: 6},
+                                { x: moment().subtract(2, 'days').format('YYYY, MM, DD'), open: 12, close: 16, high: 18, low: 12 },
+                                { x: moment().subtract(3, 'days').format("YYYY, MM, DD"), open: 18, close: 13, high: 19, low: 9},
+                                { x: moment().subtract(4, 'days').format("YYYY, MM, DD"), open: 7, close: 4, high: 9, low: 3 },
+                                
+                            ]}
+                    />
+                    {/* <VictoryChart
+                        // theme={VictoryTheme.material}
+                        // domainPadding={{ x: 25 }}
+                        // scale={{ x: "time" }}
+                    >
+                        <VictoryCandlestick
+                            candleColors={{ positive: "#00ff00", negative: "#ff0000" }}
+                            data={this.props.candleData}
+                        />
+                    </VictoryChart> */}
                 </span>
 
                 <button onClick={() => this.getNews(symbol.symbol)}

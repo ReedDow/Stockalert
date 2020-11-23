@@ -170,7 +170,7 @@
 .quote{
     bottom: 10px;
     position: absolute;
-    left: 200px;
+    left: 210px;
     font-size: 20px;
     color: black;
     height: 40px;
@@ -189,7 +189,7 @@
 .candle{
     bottom: 10px;
     position: absolute;
-    left: 250px;
+    left: 300px;
     font-size: 20px;
     color: black;
     height: 40px;
@@ -208,7 +208,7 @@
 .news{
     bottom: 10px;
     position: absolute;
-    left: 300px;
+    left: 390px;
     color: black;
     height: 40px;
     width: 80px;
@@ -237,6 +237,16 @@
 }
 .current{
     font-size: 40px;
+}
+
+.candleChart{
+    display: flex;
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    left: 180px;
+    top: -20px;
+    color: white;
 }
 
 .fullNews{
