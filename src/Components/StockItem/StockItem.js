@@ -144,15 +144,15 @@ class StockItem extends Component {
                 <span style={{ display: toggleCandle ? 'block' : 'none' }}
                     className='candleChart'>
                         < VictoryCandlestick
-                        candleRatio={1.3}
+                        candleRatio={1}
                         candleColors={{ positive: "#00ff00", negative: "#ff0000" }}
                         data={
                             [
-                                { x: moment().format('YYYY, MM, DD'), open: 10, close: 19, high: 25, low: 9},
+                                { x: moment().format('YYYY, MM, DD'), open: 10, close: 19, high: 21, low: 9},
                                 { x: moment().subtract(1, 'days').format('YYYY, MM, DD'), open: 10, close: 17, high: 18, low: 6},
                                 { x: moment().subtract(2, 'days').format('YYYY, MM, DD'), open: 12, close: 16, high: 18, low: 12 },
                                 { x: moment().subtract(3, 'days').format("YYYY, MM, DD"), open: 18, close: 13, high: 19, low: 9},
-                                { x: moment().subtract(4, 'days').format("YYYY, MM, DD"), open: 7, close: 4, high: 9, low: 3 },
+                                { x: moment().subtract(4, 'days').format("YYYY, MM, DD"), open: 12, close: 22, high: 24, low: 3 },
                                 
                             ]}
                     />
@@ -181,7 +181,7 @@ class StockItem extends Component {
                     <a
                         style={{ display: news[0] }} href={news[1]} target="_blank"
                         rel="noopener noreferrer"
-                        className='headline'>{(news[2])}
+                        className='headline'>{(news[0])}
                     </a>
 
                     <a href={news[1]}>
