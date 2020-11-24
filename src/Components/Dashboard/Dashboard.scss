@@ -14,7 +14,7 @@
 }
 .loader{
     display: flex;
-    flex-direction: column;
+    // flex-direction: column;
     align-items: center;
     background-color: #a9a9aa;
     width: 50vw;
@@ -56,7 +56,7 @@
     justify-content: left;
     flex-direction: column;
     background-color: transparent;
-    color: white;
+    color: black;
 }
 
 .watchlist textarea {
@@ -91,7 +91,7 @@
 .symbol-box{
     position: relative;
     display: flex;
-    background-color: black;
+    background-color: white;
     height: 30vh;
     width: 80vw;
     flex-direction: row;
@@ -132,7 +132,7 @@
     font-size: 15px;
     border: none;
     border-radius: 2px;
-    z-index: 1000;
+    z-index: 1;
 }
 .deletebtn1:hover{
     cursor: pointer;
@@ -145,7 +145,7 @@
 
 .deletebtn2{
     background-color: transparent;
-    color: #2E3047;
+    color: black;
     position: absolute;
     width: 100px;
     height: 30px;
@@ -170,7 +170,7 @@
 .quote{
     bottom: 10px;
     position: absolute;
-    left: 210px;
+    left: 250px;
     font-size: 20px;
     color: black;
     height: 40px;
@@ -189,7 +189,7 @@
 .candle{
     bottom: 10px;
     position: absolute;
-    left: 300px;
+    left: 340px;
     font-size: 20px;
     color: black;
     height: 40px;
@@ -208,7 +208,7 @@
 .news{
     bottom: 10px;
     position: absolute;
-    left: 390px;
+    left: 430px;
     color: black;
     height: 40px;
     width: 80px;
@@ -231,7 +231,7 @@
     height: 15vh;
     bottom: 25px;
     left: 10px;
-    color: white;
+    color: black;
     background-color: transparent;
     text-align: left;
 }
@@ -255,15 +255,15 @@
     width: 40vw;
     height: 10vh;
     left: 400px;
-    color: white;
+    color: black;
     background-color: transparent;
 }
 .newsImg{
     position: absolute;
-    height: 80px;
-    width: 110px;
-    left: 0px;
-    top: 20px;
+    height: 120px;
+    width: 220px;
+    left: -100px;
+    top: 10px;
 }
 
 // .newsImg2{
@@ -285,7 +285,7 @@
     text-decoration: none;
     justify-content: left;
     text-align: left;
-    color: white;
+    color: black;
     position: absolute;
     font-size: 15px;
     width: 250px;
@@ -329,8 +329,7 @@
     .symbol-box{
         // position: absolute;
         display: flex;        
-        background-color: black;
-        height: 50vh;
+        height: 45vh;
         width: 70vw;
         flex-direction:  row;
         flex-wrap: wrap;
@@ -341,11 +340,10 @@
     }
 
     .quote{
-        padding-top: 5px;
-        padding-left: 10px;
+        
         position: absolute;
         left: 15px;
-        top: 321px;
+        bottom: 5px;
         font-size: 20px;
         color: black;
         height: 40px;
@@ -360,12 +358,17 @@
         font-size: 45px;
         padding-left: 10px;
         top: 10px;
-        left: 4px
+        left: 0px
+    }
+    .candle{
+        position: absolute;
+        left: 108px;
+        bottom: 5px;
     }
     .news{
         position: absolute;
         left:200px;
-        top: 321px;
+        bottom: 5px;
         color: black;
         height: 40px;
         width: 80px;
@@ -382,7 +385,7 @@
         width: 20vw;
         height: 10vh;
         top: 90px;
-        color: white;
+        left: 2px;
         background-color: transparent;
         text-align: left;
     }
@@ -393,24 +396,26 @@
         height: 10vh;
         top: 97px;
         left: 220px;
-        color: white;
         background-color: transparent;
         border-radius: 4px;
     }
     .newsImg{
         width: 200px;
         left: 100px;
-        top: -75px;
+        top: -85px;
     }
     .headline{
         text-decoration: none;
         justify-content: left;
         text-align: left;
-        color: white;
         position: absolute;
         font-size: 15px;
         width: 130px;
         left: 100px;
+        top: 50px;
+    }
+    .candleChart{
+        top: -10px;
     }
 }
 
@@ -423,6 +428,7 @@
         top: 10px;
     }
     .symbol-box{
+        height: 60vh;
         width: 60vw;
     }
 
@@ -430,6 +436,24 @@
         top: 60px;
         left: -20px;
         width: 90px;
+    }
+    .candleChart{
+        left: 160px;
+    }
+
+}
+
+@media (max-width: 412px) {
+    .symbol-box{
+        right: 30px;
+        width: 85vw;
+    }
+}
+
+@media (max-width: 375px) {
+    .symbol-box{
+        right: 40px;
+        width: 90vw;
     }
 
 }
