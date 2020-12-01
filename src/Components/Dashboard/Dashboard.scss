@@ -258,51 +258,39 @@
     color: black;
     background-color: transparent;
 }
+
 .newsImg{
-    position: absolute;
-    height: 120px;
-    width: 220px;
-    left: -100px;
-    top: 10px;
+    display: flex;
+    position: relative;
+    top: -180px;
+    right: 20px;
+    padding: 10px;
+    height: 60px;
+    z-index: 10;
 }
 
-// .newsImg2{
-//     position: absolute;
-//     height: 80px;
-//     width: 110px;
-//     left: 0px;
-//     top: 110px;
-// }
 .newsImg:hover{
-    cursor: pointer;
-    
+    cursor: pointer;   
 }
-// .newsImg2:hover{
-//     cursor: pointer;
-// }
-
-.headline{
+#headline{
+    text-decoration: none;
+}
+#headline div{
     text-decoration: none;
     justify-content: left;
     text-align: left;
     color: black;
-    position: absolute;
+    padding: 12px;
+    position: relative;
     font-size: 15px;
     width: 250px;
-    left: 130px;
-    top: 20px;
+    height: 50px;
+    left: 110px;
+    top: -10px;
 }
-// .headline2{
-//     text-decoration: none;
-//     justify-content: left;
-//     text-align: left;
-//     color: white;
-//     position: absolute;
-//     font-size: 15px;
-//     width: 250px;
-//     left: 130px;
-//     top: 110px;
-// }
+.headline:hover{
+    cursor: pointer;   
+}
 
 @media(max-width: 1024px){
 
@@ -328,15 +316,9 @@
 
     .symbol-box{
         // position: absolute;
-        display: flex;        
+            
         height: 45vh;
         width: 70vw;
-        flex-direction:  row;
-        flex-wrap: wrap;
-        align-items: center;
-        margin: 10px;
-        border-radius: 5px;
-        font-size: 20px;
     }
 
     .quote{
@@ -366,53 +348,33 @@
         bottom: 5px;
     }
     .news{
-        position: absolute;
         left:200px;
         bottom: 5px;
-        color: black;
-        height: 40px;
-        width: 80px;
-        background-color: #3BBA9C;
-        border: none;
-        font-size: 20px;
-        border-radius: 5px;
     }
 
     .fullquote{
         padding-left: 10px;
-        display: flex;
-        position: absolute;
-        width: 20vw;
+        max-width: 180px;
         height: 10vh;
         top: 90px;
         left: 2px;
-        background-color: transparent;
-        text-align: left;
+       
     }
     .fullNews{
-        display: flex;
-        position: absolute;
+  
         width: 20vw;
         height: 10vh;
-        top: 97px;
-        left: 220px;
-        background-color: transparent;
-        border-radius: 4px;
+        top: 80px;
+        left: 165px;
     }
-    .newsImg{
-        width: 200px;
-        left: 100px;
-        top: -85px;
-    }
-    .headline{
-        text-decoration: none;
-        justify-content: left;
-        text-align: left;
-        position: absolute;
-        font-size: 15px;
-        width: 130px;
-        left: 100px;
-        top: 50px;
+    // .newsImg{
+    //     height: 50px;
+    //     left: -80px;
+    //     // top: -200px;
+    // }
+    #headline div{
+        width: 220px;
+       
     }
     .candleChart{
         top: -10px;
@@ -420,23 +382,35 @@
 }
 
 @media (max-width: 768px) {
-    .newsImg{
-        position: absolute;
-        height: 45px;
-        width: 80px;
-        left: -20px;
-        top: 10px;
+    .symbol{
+        font-size: 40px;
     }
+    .fullquote{
+        font-size: 20px;
+        width: 80vw;
+    }
+    .candleChart{
+        top: 30px;
+        right: 10px;
+    }
+    .fullNews{
+        background-color: yellow;
+        position: absolute;
+        top: 380px;
+        left: 70px;
+    }
+    #headline div{
+        left: 230px;
+        top: -180px;
+    }
+    // .newsImg{
+
+    // }
     .symbol-box{
-        height: 60vh;
-        width: 60vw;
+        height: 70vh;
+        width: 70vw;
     }
 
-    .headline{
-        top: 60px;
-        left: -20px;
-        width: 90px;
-    }
     .candleChart{
         left: 160px;
     }

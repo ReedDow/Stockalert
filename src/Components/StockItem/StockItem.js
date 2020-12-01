@@ -50,12 +50,12 @@ class StockItem extends Component {
             this.setState({ toggleCandle: !this.state.toggleCandle })
             console.log(this.state.candle)
 
-            return(
+            return (
                 <section>
 
                 </section>
             )
-            
+
         });
     };
 
@@ -85,8 +85,8 @@ class StockItem extends Component {
                     this.setState({ news: 'No news' })
                     console.log(response.status)
                 } else {
-                    this.setState({ news: [dataArr[0].headline, dataArr[0].url, dataArr[0].image] })
-                    // this.setState({ news: [[dataArr[0].headline, dataArr[0].url, dataArr[0].image], [dataArr[1].headline, dataArr[1].url, dataArr[1].image]] })
+                    // this.setState({ news: [dataArr[0].headline, dataArr[0].url, dataArr[0].image] })
+                    this.setState({ news: [[dataArr[0].headline, dataArr[0].url, dataArr[0].image], [dataArr[1].headline, dataArr[1].url, dataArr[1].image]] })
                     this.setState({ toggleNews: !this.state.toggleNews })
                 }
             }
@@ -102,14 +102,17 @@ class StockItem extends Component {
     }
 
     render() {
-        if (this.state.isLoading) {
+        const { toggleQuote, toggleNews, toggleCandle, quotes, news, candle, isLoading } = this.state;
+        const { symbol } = this.props
+        if (isLoading) {
             return (
                 <div><img src={loader} className="loader" alt="loader" /></div>
             )
         }
-        const { toggleQuote, toggleNews, toggleCandle, quotes, news, candle } = this.state;
-        const { symbol } = this.props
-        console.log(news)
+        if(this.state.news.length > 0){
+            console.log(news[0])
+            console.log(news[1])
+        }
         return (
             <div
                 key={symbol.symbol}
@@ -143,29 +146,19 @@ class StockItem extends Component {
 
                 <span style={{ display: toggleCandle ? 'block' : 'none' }}
                     className='candleChart'>
-                        < VictoryCandlestick
+                    < VictoryCandlestick
                         candleRatio={1}
                         candleColors={{ positive: "#00ff00", negative: "#ff0000" }}
                         data={
                             [
-                                { x: moment().format('YYYY, MM, DD'), open: 10, close: 19, high: 21, low: 9},
-                                { x: moment().subtract(1, 'days').format('YYYY, MM, DD'), open: 10, close: 17, high: 18, low: 6},
+                                { x: moment().format('YYYY, MM, DD'), open: 10, close: 19, high: 21, low: 9 },
+                                { x: moment().subtract(1, 'days').format('YYYY, MM, DD'), open: 10, close: 17, high: 18, low: 6 },
                                 { x: moment().subtract(2, 'days').format('YYYY, MM, DD'), open: 12, close: 16, high: 18, low: 12 },
-                                { x: moment().subtract(3, 'days').format("YYYY, MM, DD"), open: 18, close: 13, high: 19, low: 9},
+                                { x: moment().subtract(3, 'days').format("YYYY, MM, DD"), open: 18, close: 13, high: 19, low: 9 },
                                 { x: moment().subtract(4, 'days').format("YYYY, MM, DD"), open: 12, close: 22, high: 24, low: 3 },
-                                
+
                             ]}
                     />
-                    {/* <VictoryChart
-                        // theme={VictoryTheme.material}
-                        // domainPadding={{ x: 25 }}
-                        // scale={{ x: "time" }}
-                    >
-                        <VictoryCandlestick
-                            candleColors={{ positive: "#00ff00", negative: "#ff0000" }}
-                            data={this.props.candleData}
-                        />
-                    </VictoryChart> */}
                 </span>
 
                 <button onClick={() => this.getNews(symbol.symbol)}
@@ -177,8 +170,24 @@ class StockItem extends Component {
                 }}
                     className='fullNews'>
 
+                    <ul>
+                        {news.map(item => (
+                            <a id='headline' href={item[1]}>
+                            <div key={item}>{item[0]}</div>
+                            </a>
+                        ))}
+                    </ul>
+                    
+                    <ul>
+                        {news.map(item => (
+                            <a href={item[1]}>
+                            <img className='newsImg'  src={item[2]} key={item}></img>
+                            </a>
+                        ))}
+                        
+                    </ul>
 
-                    <a
+                    {/* <a
                         style={{ display: news[0] }} href={news[1]} target="_blank"
                         rel="noopener noreferrer"
                         className='headline'>{(news[0])}
@@ -189,7 +198,7 @@ class StockItem extends Component {
                             alt={news[1]}
                             className='newsImg'
                         ></img>
-                    </a>
+                    </a> */}
 
                     {/* <a
                             style={{ display: news[[1][0]] }} href={news[[1][1]]} target="_blank"
