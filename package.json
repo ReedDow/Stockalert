@@ -28,7 +28,8 @@
     "redux": "^4.0.5",
     "sass": "^1.26.10",
     "stripe": "^8.81.0",
-    "victory": "^35.3.5"
+    "victory": "^35.3.5",
+    "victory-chart": "^35.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
