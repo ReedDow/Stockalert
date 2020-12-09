@@ -24,7 +24,7 @@ class StockItem extends Component {
     }
 
     componentDidMount() {
-        setTimeout(() => this.setState({ isLoading: false }), 2000)
+        setTimeout(() => this.setState({ isLoading: false }), 1300)
         // this.getQuotes()
         // this.getNews()
     }
@@ -109,7 +109,7 @@ class StockItem extends Component {
                 <div><img src={loader} className="loader" alt="loader" /></div>
             )
         }
-        if(this.state.news.length > 0){
+        if (this.state.news.length > 0) {
             console.log(news[0])
             console.log(news[1])
         }
@@ -146,19 +146,27 @@ class StockItem extends Component {
 
                 <span style={{ display: toggleCandle ? 'block' : 'none' }}
                     className='candleChart'>
-                    < VictoryCandlestick
-                        candleRatio={1}
-                        candleColors={{ positive: "#00ff00", negative: "#ff0000" }}
-                        data={
-                            [
-                                { x: moment().format('YYYY, MM, DD'), open: 10, close: 19, high: 21, low: 9 },
-                                { x: moment().subtract(1, 'days').format('YYYY, MM, DD'), open: 10, close: 17, high: 18, low: 6 },
-                                { x: moment().subtract(2, 'days').format('YYYY, MM, DD'), open: 12, close: 16, high: 18, low: 12 },
-                                { x: moment().subtract(3, 'days').format("YYYY, MM, DD"), open: 18, close: 13, high: 19, low: 9 },
-                                { x: moment().subtract(4, 'days').format("YYYY, MM, DD"), open: 12, close: 22, high: 24, low: 3 },
 
-                            ]}
-                    />
+                    <div>
+                        {Object.keys(candle).map((item, i) => (
+                            <a id='candle' key={i}>
+                                <div key={item}>< VictoryCandlestick
+                                    candleRatio={1}
+                                    candleColors={{ positive: "#00ff00", negative: "#ff0000" }}
+                                    data={
+                                        [
+                                            { x: moment().format('YYYY, MM, DD'), open: item[0], close: item[1], high: item[2], low: item[3] },
+                                            // { x: moment().subtract(1, 'days').format('YYYY, MM, DD'), open: 10, close: 17, high: 18, low: 6 },
+                                            // { x: moment().subtract(2, 'days').format('YYYY, MM, DD'), open: 12, close: 16, high: 18, low: 12 },
+                                            // { x: moment().subtract(3, 'days').format("YYYY, MM, DD"), open: 18, close: 13, high: 19, low: 9 },
+                                            // { x: moment().subtract(4, 'days').format("YYYY, MM, DD"), open: 12, close: 22, high: 24, low: 3 },
+
+                                        ]}
+                                /></div>
+                            </a>
+                        ))}
+                    </div>
+
                 </span>
 
                 <button onClick={() => this.getNews(symbol.symbol)}
@@ -173,18 +181,18 @@ class StockItem extends Component {
                     <ul>
                         {news.map(item => (
                             <a id='headline' href={item[1]}>
-                            <div key={item}>{item[0]}</div>
+                                <div key={item}>{item[0]}</div>
                             </a>
                         ))}
                     </ul>
-                    
+
                     <ul>
                         {news.map(item => (
                             <a href={item[1]}>
-                            <img className='newsImg'  src={item[2]} key={item}></img>
+                                <img className='newsImg' src={item[2]} key={item}></img>
                             </a>
                         ))}
-                        
+
                     </ul>
 
                     {/* <a
