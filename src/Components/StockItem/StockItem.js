@@ -48,7 +48,7 @@ class StockItem extends Component {
             const { c, o, h, l } = data
             this.setState({ candle: { c, o, h, l } })
             this.setState({ toggleCandle: !this.state.toggleCandle })
-            console.log(this.state.candle)
+            console.log(candle)
 
             return (
                 <section>
@@ -85,7 +85,6 @@ class StockItem extends Component {
                     this.setState({ news: 'No news' })
                     console.log(response.status)
                 } else {
-                    // this.setState({ news: [dataArr[0].headline, dataArr[0].url, dataArr[0].image] })
                     this.setState({ news: [[dataArr[0].headline, dataArr[0].url, dataArr[0].image], [dataArr[1].headline, dataArr[1].url, dataArr[1].image]] })
                     this.setState({ toggleNews: !this.state.toggleNews })
                 }
@@ -113,6 +112,7 @@ class StockItem extends Component {
             console.log(news[0])
             console.log(news[1])
         }
+        console.log(candle)
         return (
             <div
                 key={symbol.symbol}
@@ -151,18 +151,26 @@ class StockItem extends Component {
                         {Object.keys(candle).map((item, i) => (
                             <a id='candle' key={i}>
                                 <div key={item}>< VictoryCandlestick
-                                    candleRatio={1}
+                                    height={300}
+                                    width={400}
+                                    // candleRatio={0.6}
                                     candleColors={{ positive: "#00ff00", negative: "#ff0000" }}
                                     data={
                                         [
-                                            { x: moment().format('YYYY, MM, DD'), open: item[0], close: item[1], high: item[2], low: item[3] },
-                                            // { x: moment().subtract(1, 'days').format('YYYY, MM, DD'), open: 10, close: 17, high: 18, low: 6 },
-                                            // { x: moment().subtract(2, 'days').format('YYYY, MM, DD'), open: 12, close: 16, high: 18, low: 12 },
-                                            // { x: moment().subtract(3, 'days').format("YYYY, MM, DD"), open: 18, close: 13, high: 19, low: 9 },
-                                            // { x: moment().subtract(4, 'days').format("YYYY, MM, DD"), open: 12, close: 22, high: 24, low: 3 },
-
+                                            { x: moment().format('YYYY, MM, DD'), open: 659, close: 683, high: 689, low: 654
+                                        },
+                                            { x: moment().subtract(1, 'days').format('YYYY, MM, DD'), open: 683, close: 691, high: 693, low: 671 },
+                                            { x: moment().subtract(2, 'days').format('YYYY, MM, DD'), open: 691, close: 716, high: 716, low: 687 },
+                                            { x: moment().subtract(3, 'days').format("YYYY, MM, DD"), open: 718, close: 713, high: 719, low: 709 },
+                                            { x: moment().subtract(4, 'days').format("YYYY, MM, DD"), open: 712, close: 722, high: 724, low: 703 },
+                                            { x: moment().subtract(5, 'days').format("YYYY, MM, DD"), open: 712, close: 694, high: 714, low: 690 },
+                                            { x: moment().subtract(6, 'days').format("YYYY, MM, DD"), open: 695, close: 685, high: 699, low: 683 },
+                                            { x: moment().subtract(7, 'days').format("YYYY, MM, DD"), open: 685, close: 696, high: 704, low: 682 },
+                                            { x: moment().subtract(8, 'days').format("YYYY, MM, DD"), open: 697, close: 706, high: 712, low: 693 },
+                                            { x: moment().subtract(9, 'days').format("YYYY, MM, DD"), open: 706, close: 708, high: 710, low: 700 },
                                         ]}
-                                /></div>
+                                />
+                                </div>
                             </a>
                         ))}
                     </div>
