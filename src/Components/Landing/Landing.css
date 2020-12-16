@@ -1,0 +1,128 @@
+.landing-container {
+  height: 100vh;
+  background-color: #3C3F58;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-image: url(https://static.vecteezy.com/system/resources/thumbnails/001/220/903/original/stock-market-graph-design-on-white-background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-color: white;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.authentication-info {
+  color: #707793;
+  background-color: rgba(235, 235, 235, 0.8);
+  width: 33%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: normal;
+      -ms-flex-pack: normal;
+          justify-content: normal;
+  position: relative;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 500px;
+  width: 400px;
+  border-radius: 7px;
+  -webkit-box-shadow: 4px 4px 10px 5px rgba(97, 97, 97, 0.4);
+          box-shadow: 4px 4px 10px 5px rgba(97, 97, 97, 0.4);
+}
+
+.logo {
+  height: 200px;
+}
+
+.authentication-info input {
+  height: 55px;
+  width: 345px;
+  background-color: white;
+  color: #2E3047;
+  border: none;
+  margin-bottom: 20px;
+  font-size: 20px;
+  border-radius: 3px;
+}
+
+.authentication-info button {
+  height: 55px;
+  width: 345px;
+  color: #2E3047;
+  background-color: #3BBA9C;
+  font-size: 20px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border-radius: 2px;
+  border: none;
+  color: white;
+}
+
+.authentication-info button:hover {
+  background-color: #A0B0BF;
+  color: #2E3047;
+}
+
+.authentication-info button:active {
+  background-color: transparent;
+  color: #2E3047;
+}
+
+.authentication-info span {
+  margin-top: 10px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+::-webkit-input-placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: lightslategray;
+  opacity: 1;
+  /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: lightslategray;
+  opacity: 1;
+  /* Firefox */
+}
+
+::-ms-input-placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: lightslategray;
+  opacity: 1;
+  /* Firefox */
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: lightslategray;
+  opacity: 1;
+  /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: white;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: white;
+}
+/*# sourceMappingURL=Landing.css.map */

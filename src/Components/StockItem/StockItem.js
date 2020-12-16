@@ -18,7 +18,11 @@ class StockItem extends Component {
             toggleCandle: false,
             quotes: {},
             news: [],
-            candle: {},
+            // candle: {},
+            candleOpen: [],
+            candleClose: [],
+            candleHigh: [],
+            candleLow: [],
             isLoading: true,
         }
     }
@@ -46,7 +50,10 @@ class StockItem extends Component {
         finnhubClient.stockCandles(`${symbol}`, "D", `${timeStampPast}`, `${timeStampCurrent}`, {}, (error, data, response) => {
             if (error) { console.log(error) }
             const { c, o, h, l } = data
-            this.setState({ candle: { c, o, h, l } })
+            this.setState({ candleClose: [ c ] })
+            this.setState({ candleOpen: [ o ] })
+            this.setState({ candleHigh: [ h ] })
+            this.setState({ candleLow: [ l ] })
             this.setState({ toggleCandle: !this.state.toggleCandle })
             console.log(candle)
 
@@ -101,7 +108,7 @@ class StockItem extends Component {
     }
 
     render() {
-        const { toggleQuote, toggleNews, toggleCandle, quotes, news, candle, isLoading } = this.state;
+        const { toggleQuote, toggleNews, toggleCandle, quotes, news, candleOpen, candleClose, candleHigh, candleLow, isLoading } = this.state;
         const { symbol } = this.props
         if (isLoading) {
             return (
@@ -112,7 +119,7 @@ class StockItem extends Component {
             console.log(news[0])
             console.log(news[1])
         }
-        console.log(candle)
+        console.log(candleOpen, candleHigh, candleLow, candleClose)
         return (
             <div
                 key={symbol.symbol}
@@ -146,19 +153,21 @@ class StockItem extends Component {
 
                 <span style={{ display: toggleCandle ? 'block' : 'none' }}
                     className='candleChart'>
-
                     <div>
-                        {Object.keys(candle).map((item, i) => (
-                            <a id='candle' key={i}>
+                    </div>
+
+                     <div>
+                        {candleOpen.map(item => (
+                            <a id='candle'>
                                 <div key={item}>< VictoryCandlestick
                                     height={300}
                                     width={400}
-                                    // candleRatio={0.6}
                                     candleColors={{ positive: "#00ff00", negative: "#ff0000" }}
                                     data={
                                         [
-                                            { x: moment().format('YYYY, MM, DD'), open: 659, close: 683, high: 689, low: 654
-                                        },
+                                            {
+                                                x: moment().format('YYYY, MM, DD'), open: 659, close: 683, high: 689, low: 654
+                                            },
                                             { x: moment().subtract(1, 'days').format('YYYY, MM, DD'), open: 683, close: 691, high: 693, low: 671 },
                                             { x: moment().subtract(2, 'days').format('YYYY, MM, DD'), open: 691, close: 716, high: 716, low: 687 },
                                             { x: moment().subtract(3, 'days').format("YYYY, MM, DD"), open: 718, close: 713, high: 719, low: 709 },
@@ -170,10 +179,11 @@ class StockItem extends Component {
                                             { x: moment().subtract(9, 'days').format("YYYY, MM, DD"), open: 706, close: 708, high: 710, low: 700 },
                                         ]}
                                 />
+                                    {console.log(item)}
                                 </div>
                             </a>
                         ))}
-                    </div>
+                    </div> 
 
                 </span>
 
@@ -200,36 +210,7 @@ class StockItem extends Component {
                                 <img className='newsImg' src={item[2]} key={item}></img>
                             </a>
                         ))}
-
                     </ul>
-
-                    {/* <a
-                        style={{ display: news[0] }} href={news[1]} target="_blank"
-                        rel="noopener noreferrer"
-                        className='headline'>{(news[0])}
-                    </a>
-
-                    <a href={news[1]}>
-                        <img src={news[2]}
-                            alt={news[1]}
-                            className='newsImg'
-                        ></img>
-                    </a> */}
-
-                    {/* <a
-                            style={{ display: news[[1][0]] }} href={news[[1][1]]} target="_blank"
-                            rel="noopener noreferrer"
-                            className='headline2'>{(news[[1][0]])}
-                        </a>
-
-                        {/* <a href={news[[1][0]]}>
-                            <img src={news[[1][0]]}
-                                alt={news[[1][0]]}
-                                className='newsImg2'
-                            ></img>
-                        </a> */}
-
-
                 </span>
             </div>
         )
