@@ -46,7 +46,7 @@ class StockItem extends Component {
     getCandles = symbol => {
         const { candle } = this.state
         let timeStampCurrent = moment().unix()
-        let timeStampPast = timeStampCurrent - (168 * 60 * 60)
+        let timeStampPast = timeStampCurrent - (336 * 60 * 60)
         finnhubClient.stockCandles(`${symbol}`, "D", `${timeStampPast}`, `${timeStampCurrent}`, {}, (error, data, response) => {
             if (error) { console.log(error) }
             const { c, o, h, l } = data
@@ -150,6 +150,9 @@ class StockItem extends Component {
 
                 <button onClick={() => this.getCandles(symbol.symbol)} className='candle'>Candle
                 </button>
+                <title className = 'candleTitle'>
+                    10 Day Candle Chart
+                </title>
 
                 <span style={{ display: toggleCandle ? 'block' : 'none' }}
                     className='candleChart'>
@@ -166,17 +169,17 @@ class StockItem extends Component {
                                     data={
                                         [
                                             {
-                                                x: moment().format('YYYY, MM, DD'), open: 659, close: 683, high: 689, low: 654
+                                                x: moment().format('YYYY, MM, DD'), open: item[0], close: 683, high: 689, low: 654
                                             },
-                                            { x: moment().subtract(1, 'days').format('YYYY, MM, DD'), open: 683, close: 691, high: 693, low: 671 },
-                                            { x: moment().subtract(2, 'days').format('YYYY, MM, DD'), open: 691, close: 716, high: 716, low: 687 },
-                                            { x: moment().subtract(3, 'days').format("YYYY, MM, DD"), open: 718, close: 713, high: 719, low: 709 },
-                                            { x: moment().subtract(4, 'days').format("YYYY, MM, DD"), open: 712, close: 722, high: 724, low: 703 },
-                                            { x: moment().subtract(5, 'days').format("YYYY, MM, DD"), open: 712, close: 694, high: 714, low: 690 },
-                                            { x: moment().subtract(6, 'days').format("YYYY, MM, DD"), open: 695, close: 685, high: 699, low: 683 },
-                                            { x: moment().subtract(7, 'days').format("YYYY, MM, DD"), open: 685, close: 696, high: 704, low: 682 },
-                                            { x: moment().subtract(8, 'days').format("YYYY, MM, DD"), open: 697, close: 706, high: 712, low: 693 },
-                                            { x: moment().subtract(9, 'days').format("YYYY, MM, DD"), open: 706, close: 708, high: 710, low: 700 },
+                                            { x: moment().subtract(1, 'days').format('YYYY, MM, DD'), open: item[1], close: 691, high: 693, low: 671 },
+                                            { x: moment().subtract(2, 'days').format('YYYY, MM, DD'), open: item[2], close: 716, high: 716, low: 687 },
+                                            { x: moment().subtract(3, 'days').format("YYYY, MM, DD"), open: item[3], close: 713, high: 719, low: 709 },
+                                            { x: moment().subtract(4, 'days').format("YYYY, MM, DD"), open: item[4], close: 722, high: 724, low: 703 },
+                                            { x: moment().subtract(5, 'days').format("YYYY, MM, DD"), open: item[5], close: 694, high: 714, low: 690 },
+                                            { x: moment().subtract(6, 'days').format("YYYY, MM, DD"), open: item[6], close: 685, high: 699, low: 683 },
+                                            { x: moment().subtract(7, 'days').format("YYYY, MM, DD"), open: item[7], close: 696, high: 704, low: 682 },
+                                            { x: moment().subtract(8, 'days').format("YYYY, MM, DD"), open: item[8], close: 706, high: 712, low: 693 },
+                                            { x: moment().subtract(9, 'days').format("YYYY, MM, DD"), open: item[9], close: 708, high: 710, low: 700 },
                                         ]}
                                 />
                                     {console.log(item)}
