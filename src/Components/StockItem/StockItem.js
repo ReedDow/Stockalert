@@ -18,11 +18,7 @@ class StockItem extends Component {
             toggleCandle: false,
             quotes: {},
             news: [],
-            // candle: {},
-            candleOpen: [],
-            candleClose: [],
-            candleHigh: [],
-            candleLow: [],
+            stockData: [],
             isLoading: true,
         }
     }
@@ -49,23 +45,24 @@ class StockItem extends Component {
         let timeStampPast = timeStampCurrent - (336 * 60 * 60)
         finnhubClient.stockCandles(`${symbol}`, "D", `${timeStampPast}`, `${timeStampCurrent}`, {}, (error, data, response) => {
             if (error) { console.log(error) }
+            // const { c: close, o: open, h: high, l: low } = data
+            // const  {close: c, open: o, high: h, low: l} = data
             const { c, o, h, l } = data
-            this.setState({ candleClose: [ c ] })
-            this.setState({ candleOpen: [ o ] })
-            this.setState({ candleHigh: [ h ] })
-            this.setState({ candleLow: [ l ] })
+            // this.setState({ candle: {data}})
+            const dataParse = []
+            c.forEach(el => {
+                dataParse.push({ close: el })
+            })
+            dataParse.forEach((el, i) => {
+                el.open = o[i]
+                el.high = h[i]
+                el.low = l[i]
+                el.x = moment().subtract(i, 'days').format('YYYY, MM, DD')
+            })
+            this.setState({ stockData: dataParse })
             this.setState({ toggleCandle: !this.state.toggleCandle })
-            console.log(candle)
-
-            return (
-                <section>
-
-                </section>
-            )
-
         });
     };
-
 
     getQuotes = symbol => {
         return finnhubClient.quote(`${symbol}`, (error, data, response) => {
@@ -108,18 +105,15 @@ class StockItem extends Component {
     }
 
     render() {
-        const { toggleQuote, toggleNews, toggleCandle, quotes, news, candleOpen, candleClose, candleHigh, candleLow, isLoading } = this.state;
+        const { toggleQuote, toggleNews, toggleCandle, quotes, news, stockData, isLoading } = this.state;
         const { symbol } = this.props
         if (isLoading) {
             return (
                 <div><img src={loader} className="loader" alt="loader" /></div>
             )
         }
-        if (this.state.news.length > 0) {
-            console.log(news[0])
-            console.log(news[1])
-        }
-        console.log(candleOpen, candleHigh, candleLow, candleClose)
+        console.log(stockData)
+
         return (
             <div
                 key={symbol.symbol}
@@ -150,44 +144,31 @@ class StockItem extends Component {
 
                 <button onClick={() => this.getCandles(symbol.symbol)} className='candle'>Candle
                 </button>
-                <title className = 'candleTitle'>
+                <title className='candleTitle'>
                     10 Day Candle Chart
                 </title>
 
                 <span style={{ display: toggleCandle ? 'block' : 'none' }}
                     className='candleChart'>
+                    <title className='candleTitle'>
+                        10 Day Candle Chart
+                    </title>
                     <div>
+                        <VictoryChart
+                            height={400}
+                            theme={VictoryTheme.material}
+                            domainPadding={{ x: 25 }}
+                            scale={{ x: "time" }}
+                        >
+                            {/* <VictoryAxis tickFormat={(t) => `${t.getDate()}/${t.getMonth()}`} /> */}
+                            <VictoryAxis dependentAxis />
+                            <VictoryCandlestick
+                                candleColors={{ positive: "#5f5c5b", negative: "#c43a31" }}
+                                data={stockData}
+                            />
+                        </VictoryChart>
+                        
                     </div>
-
-                     <div>
-                        {candleOpen.map(item => (
-                            <a id='candle'>
-                                <div key={item}>< VictoryCandlestick
-                                    height={300}
-                                    width={400}
-                                    candleColors={{ positive: "#00ff00", negative: "#ff0000" }}
-                                    data={
-                                        [
-                                            {
-                                                x: moment().format('YYYY, MM, DD'), open: item[0], close: 683, high: 689, low: 654
-                                            },
-                                            { x: moment().subtract(1, 'days').format('YYYY, MM, DD'), open: item[1], close: 691, high: 693, low: 671 },
-                                            { x: moment().subtract(2, 'days').format('YYYY, MM, DD'), open: item[2], close: 716, high: 716, low: 687 },
-                                            { x: moment().subtract(3, 'days').format("YYYY, MM, DD"), open: item[3], close: 713, high: 719, low: 709 },
-                                            { x: moment().subtract(4, 'days').format("YYYY, MM, DD"), open: item[4], close: 722, high: 724, low: 703 },
-                                            { x: moment().subtract(5, 'days').format("YYYY, MM, DD"), open: item[5], close: 694, high: 714, low: 690 },
-                                            { x: moment().subtract(6, 'days').format("YYYY, MM, DD"), open: item[6], close: 685, high: 699, low: 683 },
-                                            { x: moment().subtract(7, 'days').format("YYYY, MM, DD"), open: item[7], close: 696, high: 704, low: 682 },
-                                            { x: moment().subtract(8, 'days').format("YYYY, MM, DD"), open: item[8], close: 706, high: 712, low: 693 },
-                                            { x: moment().subtract(9, 'days').format("YYYY, MM, DD"), open: item[9], close: 708, high: 710, low: 700 },
-                                        ]}
-                                />
-                                    {console.log(item)}
-                                </div>
-                            </a>
-                        ))}
-                    </div> 
-
                 </span>
 
                 <button onClick={() => this.getNews(symbol.symbol)}

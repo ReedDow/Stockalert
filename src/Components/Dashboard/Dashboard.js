@@ -36,6 +36,7 @@ class Dashboard extends Component {
         axios.get(`/api/symbols/${this.props.user.user_id}`)
         .then(res => this.setState({stocks: res.data}))
         .catch(err => console.log(err));
+        
     }
 
     getUserPosts = () => {
@@ -62,6 +63,7 @@ class Dashboard extends Component {
     }
 
     render(){
+        console.log(this.state.stocks)
         //  if(this.state.isLoading){
         //     return(
         //         <div><img src={loader} className="loader" alt="loader" /></div>
