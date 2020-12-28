@@ -45,10 +45,7 @@ class StockItem extends Component {
         let timeStampPast = timeStampCurrent - (336 * 60 * 60)
         finnhubClient.stockCandles(`${symbol}`, "D", `${timeStampPast}`, `${timeStampCurrent}`, {}, (error, data, response) => {
             if (error) { console.log(error) }
-            // const { c: close, o: open, h: high, l: low } = data
-            // const  {close: c, open: o, high: h, low: l} = data
             const { c, o, h, l } = data
-            // this.setState({ candle: {data}})
             const dataParse = []
             c.forEach(el => {
                 dataParse.push({ close: el })
@@ -155,7 +152,8 @@ class StockItem extends Component {
                     </title>
                     <div>
                         <VictoryChart
-                            height={400}
+                            height={200}
+                            width={250}
                             theme={VictoryTheme.material}
                             domainPadding={{ x: 25 }}
                             scale={{ x: "time" }}
@@ -163,7 +161,7 @@ class StockItem extends Component {
                             {/* <VictoryAxis tickFormat={(t) => `${t.getDate()}/${t.getMonth()}`} /> */}
                             <VictoryAxis dependentAxis />
                             <VictoryCandlestick
-                                candleColors={{ positive: "#5f5c5b", negative: "#c43a31" }}
+                                candleColors={{ positive: "#00ff00", negative: "#ff0000" }}
                                 data={stockData}
                             />
                         </VictoryChart>
