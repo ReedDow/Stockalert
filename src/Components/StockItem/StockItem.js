@@ -40,7 +40,6 @@ class StockItem extends Component {
     }
 
     getCandles = symbol => {
-        const { candle } = this.state
         let timeStampCurrent = moment().unix()
         let timeStampPast = timeStampCurrent - (336 * 60 * 60)
         finnhubClient.stockCandles(`${symbol}`, "D", `${timeStampPast}`, `${timeStampCurrent}`, {}, (error, data, response) => {
@@ -83,7 +82,6 @@ class StockItem extends Component {
             } else {
                 if (!dataArr[0]) {
                     alert(`No News Retrieved for ${symbol}`)
-                    this.setState({ news: 'No news' })
                     console.log(response.status)
                 } else {
                     this.setState({ news: [[dataArr[0].headline, dataArr[0].url, dataArr[0].image], [dataArr[1].headline, dataArr[1].url, dataArr[1].image]] })
@@ -109,6 +107,30 @@ class StockItem extends Component {
                 <div><img src={loader} className="loader" alt="loader" /></div>
             )
         }
+        const renderNews1 = () => {
+            if(news){
+                return (
+                news.map(item => (
+                <a id='headline' href={item[1]}>
+                    <div key={item}>{item[0]}</div>
+                </a>
+                )))}else{
+                return(
+                    <div id='headline'> No News Retrieved for {symbol} </div>
+                )}
+        }
+        const renderNews2 = () => {
+            if(news){
+                return(
+                news.map(item => (
+                <a href={item[1]}>
+                    <img className='newsImg' src={item[2]} key={item}></img>
+                </a>
+                )))}else{
+                return(
+                <img className='newsImg' src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" width="0" height="0" alt="" ></img>
+                )}
+        }
         console.log(stockData)
 
         return (
@@ -132,11 +154,11 @@ class StockItem extends Component {
 
                 <span style={{ display: toggleQuote ? 'block' : 'none' }}
                     className='fullquote'>
-                    <div className='current'>{quotes.c}</div>
+                    <div className='current'>{Math.round((quotes.c + Number.EPSILON) * 100) / 100}</div>
                     <div className=
-                        'open'>Open: {quotes.o}</div>
-                    <div className='high'>Today's High:{quotes.h}</div>
-                    <div className='low'>Today's Low: {quotes.l}</div>
+                        'open'>Open: {Math.round((quotes.o + Number.EPSILON) * 100) / 100}</div>
+                    <div className='high'>High: {Math.round((quotes.h + Number.EPSILON) * 100) / 100}</div>
+                    <div className='low'>Low: {Math.round((quotes.l + Number.EPSILON) * 100) / 100}</div>
                 </span>
 
                 <button onClick={() => this.getCandles(symbol.symbol)} className='candle'>Candle
@@ -152,8 +174,8 @@ class StockItem extends Component {
                     </title>
                     <div>
                         <VictoryChart
-                            height={200}
-                            width={250}
+                            height={230}
+                            width={290}
                             theme={VictoryTheme.material}
                             domainPadding={{ x: 25 }}
                             scale={{ x: "time" }}
@@ -177,21 +199,11 @@ class StockItem extends Component {
                         : 'none'
                 }}
                     className='fullNews'>
-
                     <ul>
-                        {news.map(item => (
-                            <a id='headline' href={item[1]}>
-                                <div key={item}>{item[0]}</div>
-                            </a>
-                        ))}
+                        {renderNews1()}
                     </ul>
-
                     <ul>
-                        {news.map(item => (
-                            <a href={item[1]}>
-                                <img className='newsImg' src={item[2]} key={item}></img>
-                            </a>
-                        ))}
+                        {renderNews2()}
                     </ul>
                 </span>
             </div>
