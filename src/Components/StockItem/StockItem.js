@@ -141,9 +141,9 @@ class StockItem extends Component {
 
                 <button onClick={() => this.getCandles(symbol.symbol)} className='candle'>Candle
                 </button>
-                <title className='candleTitle'>
+                {/* <title className='candleTitle'>
                     10 Day Candle Chart
-                </title>
+                </title> */}
 
                 <span style={{ display: toggleCandle ? 'block' : 'none' }}
                     className='candleChart'>
