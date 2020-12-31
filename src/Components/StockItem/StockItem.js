@@ -108,28 +108,32 @@ class StockItem extends Component {
             )
         }
         const renderNews1 = () => {
-            if(news){
+            if (news) {
                 return (
-                news.map(item => (
-                <a id='headline' href={item[1]}>
-                    <div key={item}>{item[0]}</div>
-                </a>
-                )))}else{
-                return(
+                    news.map(item => (
+                        <a id='headline' href={item[1]}>
+                            <div key={item}>{item[0]}</div>
+                        </a>
+                    )))
+            } else {
+                return (
                     <div id='headline'> No News Retrieved for {symbol} </div>
-                )}
+                )
+            }
         }
         const renderNews2 = () => {
-            if(news){
-                return(
-                news.map(item => (
-                <a href={item[1]}>
-                    <img className='newsImg' src={item[2]} key={item}></img>
-                </a>
-                )))}else{
-                return(
-                <img className='newsImg' src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" width="0" height="0" alt="" ></img>
-                )}
+            if (news) {
+                return (
+                    news.map(item => (
+                        <a href={item[1]}>
+                            <img className='newsImg' src={item[2]} key={item}></img>
+                        </a>
+                    )))
+            } else {
+                return (
+                    <img className='newsImg' src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" width="0" height="0" alt="" ></img>
+                )
+            }
         }
         console.log(stockData)
 
@@ -169,9 +173,7 @@ class StockItem extends Component {
 
                 <span style={{ display: toggleCandle ? 'block' : 'none' }}
                     className='candleChart'>
-                    <title className='candleTitle'>
-                        10 Day Candle Chart
-                    </title>
+
                     <div>
                         <VictoryChart
                             height={230}
@@ -189,6 +191,10 @@ class StockItem extends Component {
                         </VictoryChart>
                         
                     </div>
+                    <div className='candleTitle'>
+                            10 Day Candle Chart
+                    </div>
+
                 </span>
 
                 <button onClick={() => this.getNews(symbol.symbol)}

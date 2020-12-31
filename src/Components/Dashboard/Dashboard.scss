@@ -239,9 +239,10 @@
 }
 
 .candleTitle{
-    background-color: green;
-    top: 40px;
-    z-index: 100;
+    position: relative;
+    color: black;
+    top: -50px;
+    font-size: 10px;
 }
 
 .candleChart{
