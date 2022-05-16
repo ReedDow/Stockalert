@@ -35,8 +35,8 @@ require (
 	github.com/spf13/viper v1.6.3
 	github.com/stretchr/testify v1.5.1
 	github.com/thedevsaddam/gojsonq v2.3.0+incompatible
-	github.com/tidwall/gjson v1.6.0
-	github.com/tidwall/pretty v1.0.1
+	github.com/tidwall/gjson v1.9.3
+	github.com/tidwall/pretty v1.2.0
 	github.com/x-cray/logrus-prefixed-formatter v0.5.2
 	golang.org/x/crypto v0.0.0-20200429183012-4b2356b1ed79
 	golang.org/x/net v0.0.0-20200501053045-e0ff5e5a1de5 // indirect
